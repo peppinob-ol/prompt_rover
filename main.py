@@ -687,14 +687,15 @@ class ConceptTransformationVisualizer:
         )
 
     @log_execution_time
-    def visualize_concepts(self, df, show_evolution=False):
+    def visualize_concepts(self, df, show_evolution=False, title=None):
         """
         Funzione di visualizzazione unificata per concetti
         
         Args:
             df: DataFrame con concetti e coordinate
             show_evolution: Se True, mostra evoluzione dei concetti con trasparenza
-                           basata sull'età del messaggio
+                        basata sull'età del messaggio
+            title: Titolo personalizzato (opzionale)
         
         Returns:
             Figura matplotlib
@@ -704,7 +705,7 @@ class ConceptTransformationVisualizer:
         if df.empty:
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.text(0.5, 0.5, "Nessun concetto da visualizzare",
-                  ha='center', va='center', fontsize=14)
+                ha='center', va='center', fontsize=14)
             ax.set_axis_off()
             return fig
             
@@ -719,26 +720,30 @@ class ConceptTransformationVisualizer:
         }
         
         # Determina se siamo in modalità chat
-        is_chat_mode = "message_id" in df.columns and "message_type" in df.columns
+        is_chat_mode = MESSAGE_ID in df.columns or "message_id" in df.columns
+        
+        # Standardizza i nomi delle colonne per compatibilità con codice esistente
+        message_id_col = MESSAGE_ID if MESSAGE_ID in df.columns else "message_id"
+        message_type_col = CONTENT_TYPE if CONTENT_TYPE in df.columns else "message_type"
         
         # Calcola alpha (trasparenza) basato sull'età del messaggio se richiesto
-        if show_evolution and "message_id" in df.columns:
-            max_message_id = df["message_id"].max()
-            df[ALPHA] = df["message_id"].apply(
+        if show_evolution and message_id_col in df.columns:
+            max_message_id = df[message_id_col].max()
+            df[ALPHA] = df[message_id_col].apply(
                 lambda mid: max(0.3, 1.0 - (max_message_id - mid) / max(1, max_message_id))
             )
         else:
             df[ALPHA] = 0.7  # Alpha predefinito
         
         # Plot dei punti
-        if is_chat_mode:
+        if is_chat_mode and message_type_col in df.columns:
             # Modalità chat - colora per tipo di messaggio
             for _, row in df.iterrows():
                 alpha_value = row.get(ALPHA, 0.7)
-                message_type = row.get("message_type", "")
+                message_type = row.get(message_type_col, "")
                 ax.scatter(
-                    row["x"],
-                    row["y"],
+                    row[X_COORD] if X_COORD in df.columns else row["x"],
+                    row[Y_COORD] if Y_COORD in df.columns else row["y"],
                     color=colors.get(message_type, "gray"),
                     alpha=alpha_value,
                     s=100,
@@ -753,16 +758,15 @@ class ConceptTransformationVisualizer:
             ax.legend(handles=[user_patch, system_patch])
         else:
             # Modalità standard - colora per source (input/output)
-            # Assicurati che la colonna "source" contenga i valori corretti
-            print(f"Valori unici nella colonna 'source': {df['source'].unique()}")
+            source_col = "source"  # Non cambiamo questo per retrocompatibilità
             
             # Mappa i valori nella colonna "source" ai colori corretti
-            for source_value, group in df.groupby("source"):
+            for source_value, group in df.groupby(source_col):
                 # Determina il colore corretto
-                if source_value == "user" or source_value == "input":
+                if source_value in ["user", "input"]:
                     color = TEAL
                     label = "input" if source_value == "input" else "user"
-                elif source_value == "system" or source_value == "output":
+                elif source_value in ["system", "output"]:
                     color = ORANGE
                     label = "output" if source_value == "output" else "system"
                 else:
@@ -770,8 +774,8 @@ class ConceptTransformationVisualizer:
                     label = source_value
                 
                 ax.scatter(
-                    group["x"],
-                    group["y"],
+                    group[X_COORD] if X_COORD in df.columns else group["x"],
+                    group[Y_COORD] if Y_COORD in df.columns else group["y"],
                     label=label,
                     color=color,
                     alpha=0.7,
@@ -782,9 +786,13 @@ class ConceptTransformationVisualizer:
         # Aggiungi etichette ai nodi
         for _, row in df.iterrows():
             alpha_value = row.get(ALPHA, 0.7)
+            x_coord = row[X_COORD] if X_COORD in df.columns else row["x"]
+            y_coord = row[Y_COORD] if Y_COORD in df.columns else row["y"]
+            label_text = row[LABEL] if LABEL in df.columns else row["label"]
+            
             ax.annotate(
-                row["label"],
-                (row["x"], row["y"]),
+                label_text,
+                (x_coord, y_coord),
                 fontsize=9,
                 alpha=alpha_value,
                 xytext=(5, 5),
@@ -794,10 +802,17 @@ class ConceptTransformationVisualizer:
         
         # Aggiungi archi del grafo se disponibile
         if self.concept_graph:
-            node_positions = {row["label"]: (row["x"], row["y"]) for _, row in df.iterrows()}
+            # Crea il mapping delle posizioni dei nodi
+            node_positions = {}
+            for _, row in df.iterrows():
+                node_label = row[LABEL] if LABEL in df.columns else row["label"]
+                x_coord = row[X_COORD] if X_COORD in df.columns else row["x"]
+                y_coord = row[Y_COORD] if Y_COORD in df.columns else row["y"]
+                node_positions[node_label] = (x_coord, y_coord)
             
             # Calcola alpha per i nodi (per gli archi)
-            node_alphas = {row["label"]: row.get(ALPHA, 0.7) for _, row in df.iterrows()}
+            node_alphas = {row[LABEL] if LABEL in df.columns else row["label"]: 
+                        row.get(ALPHA, 0.7) for _, row in df.iterrows()}
             
             # Disegna tutti gli archi
             for u, v, data in self.concept_graph.edges(data=True):
@@ -830,7 +845,9 @@ class ConceptTransformationVisualizer:
                     ax.plot(x, y, linestyle=linestyle, color=color, alpha=edge_alpha, linewidth=linewidth)
         
         # Titolo appropriato per la modalità
-        if show_evolution or is_chat_mode:
+        if title:
+            ax.set_title(title, fontsize=14)
+        elif show_evolution or is_chat_mode:
             ax.set_title('Evoluzione Concettuale della Conversazione', fontsize=14)
         else:
             ax.set_title('Mappa Concettuale della Trasformazione', fontsize=14)
@@ -840,6 +857,20 @@ class ConceptTransformationVisualizer:
         plt.tight_layout()
         
         return fig
+
+    @log_execution_time
+    def visualize_static(self, df):
+        """
+        Wrapper per retrocompatibilità che chiama il metodo unificato
+        """
+        return self.visualize_concepts(df, show_evolution=False)
+
+    @log_execution_time
+    def visualize_static_chat(self, df):
+        """
+        Wrapper per retrocompatibilità che chiama il metodo unificato
+        """
+        return self.visualize_concepts(df, show_evolution=True)
 
     @log_execution_time
     def process_text_pair(self, input_text, output_text, use_llm=False,
