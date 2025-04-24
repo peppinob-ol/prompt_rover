@@ -59,10 +59,10 @@ def log_execution_time(func):
 # Costanti per colori e nomi di colonne
 # Schema di colori
 TEAL = "#3bb7b6"    # Colore utente/input
-ORANGE = "#fbad52"  # Colore sistema/output
+ORANGE = "#fbad52"  # Colore assistant/output
 
 # Nomi delle colonne standardizzati
-CONTENT_TYPE = "content_type"  # Valori: "user", "system" 
+CONTENT_TYPE = "content_type"  # Valori: "user", "assistant" 
 MESSAGE_ID = "message_id"      # Ordinamento messaggi
 LABEL = "label"                # Etichetta concetto
 CATEGORY = "category"          # Categoria concetto
@@ -104,25 +104,28 @@ class ConceptTransformationVisualizer:
         if openai_api_key:
             self.initialize_openai_client(openai_api_key)
 
-            # Memorizzazione per embedding e configurazioni
-            self.concept_embeddings = {}
-            self.umap_reducer = None
-            self.tsne_reducer = None
-            self.concept_graph = None
+        # Inizializzazione attributi per gli embedding (sempre, non solo con openai_api_key)
+        self.name_embeddings = {}
+        self.description_embeddings = {}  # Utilizzato come self.desc_embeddings
+        self.desc_embeddings = {}  # Alias per compatibilità
 
-            # Dizionari per memorizzare gli embedding separati di nome e descrizione
-            self.name_embeddings = {}
-            self.desc_embeddings = {}
+        # Memorizzazione per embedding e configurazioni
+        self.concept_embeddings = {
+            'names': {},
+            'descriptions': {}
+        }
+        self.umap_reducer = None
+        self.tsne_reducer = None
+        self.concept_graph = None
 
-            # Inizializza strutture dati per modalità chat
-            self.initialize_chat_mode()
+        # Inizializza strutture dati per modalità chat
+        self.initialize_chat_mode()
 
         # Cache estesa
         self.concept_cache = {}      # Cache per concetti già calcolati
         self.embedding_cache = {}    # Cache per embedding già calcolati
         self.reduction_cache = {}    # Cache per riduzioni dimensionali
         self.graph_cache = {}        # Cache per grafi già calcolati
-            
 
     def initialize_openai_client(self, api_key=None):
         """
@@ -168,6 +171,13 @@ class ConceptTransformationVisualizer:
         self.concept_cache = {}  # Cache per concetti già calcolati
         self.concept_graph = None # Resetta anche il grafo
 
+        # Assicurati che anche gli embedding siano reinizializzati
+        self.name_embeddings = {}
+        self.desc_embeddings = {}
+        self.concept_embeddings = {
+            'names': {},
+            'descriptions': {}
+        }
         chat_logger.info("Modalità chat inizializzata")
         return "Modalità chat inizializzata"
 
@@ -198,20 +208,21 @@ class ConceptTransformationVisualizer:
         return f"{text_hash}_{param_hash}"
 
     @log_execution_time
-    def extract_concepts_with_llm(self, text, source_label, model="gpt-4", timeout=30):
+    def extract_concepts_with_llm(self, text, is_user, model="gpt-4", timeout=30):
         """
         Estrae concetti da un testo utilizzando un modello LLM con gestione errori migliorata
 
         Args:
             text: Testo da cui estrarre i concetti
-            source_label: Etichetta della sorgente (input/output)
+            is_user: True se il testo proviene dall'utente, False se dall'assistant
             model: Modello OpenAI da utilizzare
             timeout: Timeout in secondi per la chiamata API
 
         Returns:
             Lista di concetti estratti con metadati
         """
-        perf_logger.info(f"Estrazione concetti via LLM per {source_label}")
+        content_type = "user" if is_user else "assistant"
+        perf_logger.info(f"Estrazione concetti via LLM per {content_type}")
         
         # Verifica client OpenAI
         if not self.llm_client:
@@ -268,7 +279,8 @@ class ConceptTransformationVisualizer:
 
                 # Aggiungi metadati sulla sorgente
                 for concept in concepts:
-                    concept["source"] = source_label
+                    concept["source"] = content_type
+                    concept[CONTENT_TYPE] = content_type
 
                 return concepts
                 
@@ -297,18 +309,18 @@ class ConceptTransformationVisualizer:
             return self.extract_concepts_alternative(text, source_label)
 
     @log_execution_time
-    def extract_concepts_alternative(self, text, is_user=True):
+    def extract_concepts_alternative(self, text, is_user):
         """
         Metodo alternativo per estrarre concetti senza LLM, usando spaCy
 
         Args:
             text: Testo da cui estrarre i concetti
-            is_user: True se il testo proviene dall'utente, False se dal sistema
+            is_user: True se il testo proviene dall'utente, False se dall'assistant
 
         Returns:
             Lista di concetti estratti con metadati
         """
-        content_type = "user" if is_user else "system"
+        content_type = "user" if is_user else "assistant"
         perf_logger.info(f"Estrazione concetti via spaCy per {content_type}")
 
         # Carica il modello spaCy per l'italiano
@@ -403,6 +415,10 @@ class ConceptTransformationVisualizer:
             # Memorizza gli embedding separati per riferimento futuro
             self.name_embeddings[concept[LABEL]] = name_embeddings[i]
             self.desc_embeddings[concept[LABEL]] = desc_embeddings[i]
+            
+            # Aggiorna anche le strutture self.concept_embeddings
+            self.concept_embeddings['names'][concept[LABEL]] = name_embeddings[i]
+            self.concept_embeddings['descriptions'][concept[LABEL]] = desc_embeddings[i]
 
             # Calcola l'embedding pesato
             weighted_emb = name_weight * name_embeddings[i] + (1 - name_weight) * desc_embeddings[i]
@@ -411,13 +427,7 @@ class ConceptTransformationVisualizer:
 
             # Aggiungi al concetto
             concept[EMBEDDING] = weighted_emb
-
-            # Memorizza per riferimento futuro
-            self.concept_embeddings[concept[LABEL]] = {
-                EMBEDDING: weighted_emb,
-                "metadata": concept
-            }
-
+        
         return concepts
 
     @log_execution_time
@@ -714,9 +724,7 @@ class ConceptTransformationVisualizer:
         # Mappa dei colori semplificata
         colors = {
             "user": TEAL,
-            "system": ORANGE,
-            "input": TEAL,
-            "output": ORANGE
+            "assistant": ORANGE,
         }
         
         # Determina se siamo in modalità chat
@@ -736,6 +744,7 @@ class ConceptTransformationVisualizer:
             df[ALPHA] = 0.7  # Alpha predefinito
         
         # Plot dei punti
+        # Semplifica la logica di colorazione
         if is_chat_mode and message_type_col in df.columns:
             # Modalità chat - colora per tipo di messaggio
             for _, row in df.iterrows():
@@ -750,33 +759,19 @@ class ConceptTransformationVisualizer:
                     edgecolors='black',
                     linewidth=0.5
                 )
-                
-            # Aggiungi legenda per modalità chat
-            import matplotlib.patches as mpatches
-            user_patch = mpatches.Patch(color=colors["user"], label='Messaggio Utente')
-            system_patch = mpatches.Patch(color=colors["system"], label='Messaggio Sistema')
-            ax.legend(handles=[user_patch, system_patch])
         else:
-            # Modalità standard - colora per source (input/output)
+            # Modalità standard - colora per source (user/assistant)
             source_col = "source"  # Non cambiamo questo per retrocompatibilità
             
             # Mappa i valori nella colonna "source" ai colori corretti
             for source_value, group in df.groupby(source_col):
-                # Determina il colore corretto
-                if source_value in ["user", "input"]:
-                    color = TEAL
-                    label = "input" if source_value == "input" else "user"
-                elif source_value in ["system", "output"]:
-                    color = ORANGE
-                    label = "output" if source_value == "output" else "system"
-                else:
-                    color = "gray"
-                    label = source_value
+                # Semplifica la decisione sul colore
+                color = colors.get(source_value, "gray")
                 
                 ax.scatter(
                     group[X_COORD] if X_COORD in df.columns else group["x"],
                     group[Y_COORD] if Y_COORD in df.columns else group["y"],
-                    label=label,
+                    label=source_value,  # Usa direttamente source_value come label
                     color=color,
                     alpha=0.7,
                     s=100
@@ -910,9 +905,9 @@ class ConceptTransformationVisualizer:
             else:
                 # Estrai concetti normalmente
                 if use_llm and self.llm_client:
-                    input_concepts = self.extract_concepts_with_llm(input_text, "input")
+                    input_concepts = self.extract_concepts_with_llm(input_text, True)
                 else:
-                    input_concepts = self.extract_concepts_alternative(input_text, "input")
+                    input_concepts = self.extract_concepts_alternative(input_text, True)
                 
                 # Calcola embedding con peso nome/descrizione
                 input_concepts = self.compute_embeddings(input_concepts, name_weight=name_weight)
@@ -928,9 +923,9 @@ class ConceptTransformationVisualizer:
             else:
                 # Estrai concetti normalmente
                 if use_llm and self.llm_client:
-                    output_concepts = self.extract_concepts_with_llm(output_text, "output")
+                    output_concepts = self.extract_concepts_with_llm(output_text, False)
                 else:
-                    output_concepts = self.extract_concepts_alternative(output_text, "output")
+                    output_concepts = self.extract_concepts_alternative(output_text, False)
                 
                 # Calcola embedding con peso nome/descrizione
                 output_concepts = self.compute_embeddings(output_concepts, name_weight=name_weight)
@@ -1014,7 +1009,7 @@ class ConceptTransformationVisualizer:
         Returns:
             DataFrame aggiornato e figure
         """
-        content_type = "user" if is_user else "system"
+        content_type = "user" if is_user else "assistant"
         chat_logger.info(f"Elaborazione nuovo messaggio - {content_type} - Lunghezza: {len(message)} caratteri")
 
         try:
@@ -1203,13 +1198,13 @@ def create_gradio_interface():
                     use_llm=use_llm
                 )
 
-                #  risposta del sistema
-                system_response = visualizer.generate_chat_response(history)
-                history.append({"role": "assistant", "content": system_response})
+                #  risposta dell'assistant
+                assistant_response = visualizer.generate_chat_response(history)
+                history.append({"role": "assistant", "content": assistant_response})
 
                 # Analizza anche la risposta del sistema
                 df, fig_static, status_msg = visualizer.process_new_message(
-                    system_response, is_user=False,
+                    assistant_response, is_user=False,
                     name_weight=name_weight,
                     dim_reduction_method=dim_reduction,
                     use_mst=use_mst,
