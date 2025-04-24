@@ -1,0 +1,209 @@
+2025-04-14 19:29:56,935 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-04-14 19:29:56,935 - performance - INFO - Caricamento modello embedding: paraphrase-multilingual-MiniLM-L12-v2
+2025-04-14 19:29:56,937 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-14 19:29:56,938 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
+2025-04-14 19:29:56,942 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:29:57,384 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json HTTP/1.1" 200 0
+2025-04-14 19:29:57,392 - filelock - DEBUG - Attempting to acquire lock 1809331583440 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\f7640f94e81bb7f4f04daf1668850b38763a13d9.lock
+2025-04-14 19:29:57,393 - filelock - DEBUG - Lock 1809331583440 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\f7640f94e81bb7f4f04daf1668850b38763a13d9.lock
+2025-04-14 19:29:57,532 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json HTTP/1.1" 200 229
+2025-04-14 19:29:57,551 - filelock - DEBUG - Attempting to release lock 1809331583440 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\f7640f94e81bb7f4f04daf1668850b38763a13d9.lock
+2025-04-14 19:29:57,553 - filelock - DEBUG - Lock 1809331583440 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\f7640f94e81bb7f4f04daf1668850b38763a13d9.lock
+2025-04-14 19:29:57,724 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 200 0
+2025-04-14 19:29:57,731 - filelock - DEBUG - Attempting to acquire lock 1809331578320 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\b974b349cb2d419ada11181750a733ff82f291ad.lock
+2025-04-14 19:29:57,732 - filelock - DEBUG - Lock 1809331578320 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\b974b349cb2d419ada11181750a733ff82f291ad.lock
+2025-04-14 19:29:57,886 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 200 122
+2025-04-14 19:29:57,896 - filelock - DEBUG - Attempting to release lock 1809331578320 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\b974b349cb2d419ada11181750a733ff82f291ad.lock
+2025-04-14 19:29:57,900 - filelock - DEBUG - Lock 1809331578320 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\b974b349cb2d419ada11181750a733ff82f291ad.lock
+2025-04-14 19:29:58,039 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md HTTP/1.1" 200 0
+2025-04-14 19:29:58,041 - filelock - DEBUG - Attempting to acquire lock 1809331655568 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\6bedb7f3622d56b7020f33ab93f6996d33242043.lock
+2025-04-14 19:29:58,042 - filelock - DEBUG - Lock 1809331655568 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\6bedb7f3622d56b7020f33ab93f6996d33242043.lock
+2025-04-14 19:29:58,183 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md HTTP/1.1" 200 3888
+2025-04-14 19:29:58,200 - filelock - DEBUG - Attempting to release lock 1809331655568 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\6bedb7f3622d56b7020f33ab93f6996d33242043.lock
+2025-04-14 19:29:58,200 - filelock - DEBUG - Lock 1809331655568 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\6bedb7f3622d56b7020f33ab93f6996d33242043.lock
+2025-04-14 19:30:08,213 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+2025-04-14 19:30:08,643 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 200 0
+2025-04-14 19:30:08,645 - filelock - DEBUG - Attempting to acquire lock 1809331869200 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\5fd10429389515d3e5cccdeda08cae5fea1ae82e.lock
+2025-04-14 19:30:08,646 - filelock - DEBUG - Lock 1809331869200 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\5fd10429389515d3e5cccdeda08cae5fea1ae82e.lock
+2025-04-14 19:30:08,795 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 200 53
+2025-04-14 19:30:08,806 - filelock - DEBUG - Attempting to release lock 1809331869200 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\5fd10429389515d3e5cccdeda08cae5fea1ae82e.lock
+2025-04-14 19:30:08,806 - filelock - DEBUG - Lock 1809331869200 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\5fd10429389515d3e5cccdeda08cae5fea1ae82e.lock
+2025-04-14 19:30:09,163 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json HTTP/1.1" 404 0
+2025-04-14 19:30:09,296 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json HTTP/1.1" 200 0
+2025-04-14 19:30:09,306 - filelock - DEBUG - Attempting to acquire lock 1809331867088 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\c06d5b49495f044e6380e68a60538be17a6bd5d1.lock
+2025-04-14 19:30:09,311 - filelock - DEBUG - Lock 1809331867088 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\c06d5b49495f044e6380e68a60538be17a6bd5d1.lock
+2025-04-14 19:30:09,674 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json HTTP/1.1" 200 645
+2025-04-14 19:30:09,685 - filelock - DEBUG - Attempting to release lock 1809331867088 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\c06d5b49495f044e6380e68a60538be17a6bd5d1.lock
+2025-04-14 19:30:09,686 - filelock - DEBUG - Lock 1809331867088 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\c06d5b49495f044e6380e68a60538be17a6bd5d1.lock
+2025-04-14 19:30:14,284 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/model.safetensors HTTP/1.1" 302 0
+2025-04-14 19:30:14,288 - filelock - DEBUG - Attempting to acquire lock 1809331868880 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b.lock
+2025-04-14 19:30:14,288 - filelock - DEBUG - Lock 1809331868880 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b.lock
+2025-04-14 19:30:14,291 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-04-14 19:30:14,434 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/model.safetensors HTTP/1.1" 302 1325
+2025-04-14 19:30:14,437 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): cas-bridge.xethub.hf.co:443
+2025-04-14 19:30:14,618 - urllib3.connectionpool - DEBUG - https://cas-bridge.xethub.hf.co:443 "GET /xet-bridge-us/621ffdc136468d709f1802ec/b843f68c48263ac9fc3ea8f55e59bed7065194bf524cb2ae67542dbe1c329c10?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20250414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250414T170941Z&X-Amz-Expires=3600&X-Amz-Signature=307384479b910258507c5199bf60d66236c0189bb274f84dc951af5f30a7e5dd&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model.safetensors%3B+filename%3D%22model.safetensors%22%3B&x-id=GetObject&Expires=1744654181&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NDY1NDE4MX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MjFmZmRjMTM2NDY4ZDcwOWYxODAyZWMvYjg0M2Y2OGM0ODI2M2FjOWZjM2VhOGY1NWU1OWJlZDcwNjUxOTRiZjUyNGNiMmFlNjc1NDJkYmUxYzMyOWMxMCoifV19&Signature=M6tnBsmA7VVWQS0fTQ0BpQiTjO7P50VaC-PV9WUZjK5s5VYdO0u7xg7Nv2okIM~-FbE4Wg2Fd~ujRijW7F~ddeLTt4NqotjobteL42-KaZ77UuPnO01niPA1UObsMiEitJ6U5UczWm7jo-tSLNzDZabJy2~U5z5WlBQbqVrRtJWR4Ue4fGM0hLuVVkKZ6j9gyKJMk84o88Z2biis8KJ9nHp2zbNY1A7~1-cfOptQf-g8gsPSfvCF4KVlJnoECi1a~EHHyFhHMhbVeDQna~ELkhGzZbt0ZoC9AOxHJ161x5yABWh1HJH1Xf00F2fynq3AlOC8jYyyVmXzJezawRoAGQ__&Key-Pair-Id=K2L8F4GPSG1IFC HTTP/1.1" 200 470641600
+2025-04-14 19:30:52,762 - filelock - DEBUG - Attempting to release lock 1809331868880 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b.lock
+2025-04-14 19:30:52,763 - filelock - DEBUG - Lock 1809331868880 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b.lock
+2025-04-14 19:30:52,969 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-04-14 19:30:52,971 - filelock - DEBUG - Attempting to acquire lock 1809331867536 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\0da3507018a1a1c625ff93179ff60bdb9202cc6c.lock
+2025-04-14 19:30:52,972 - filelock - DEBUG - Lock 1809331867536 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\0da3507018a1a1c625ff93179ff60bdb9202cc6c.lock
+2025-04-14 19:30:53,110 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json HTTP/1.1" 200 480
+2025-04-14 19:30:53,122 - filelock - DEBUG - Attempting to release lock 1809331867536 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\0da3507018a1a1c625ff93179ff60bdb9202cc6c.lock
+2025-04-14 19:30:53,124 - filelock - DEBUG - Lock 1809331867536 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\0da3507018a1a1c625ff93179ff60bdb9202cc6c.lock
+2025-04-14 19:30:53,271 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/vocab.txt HTTP/1.1" 404 0
+2025-04-14 19:30:53,414 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.json HTTP/1.1" 302 0
+2025-04-14 19:30:53,418 - filelock - DEBUG - Attempting to acquire lock 1809335483088 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8.lock
+2025-04-14 19:30:53,419 - filelock - DEBUG - Lock 1809335483088 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8.lock
+2025-04-14 19:30:53,420 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-04-14 19:30:53,566 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.json HTTP/1.1" 302 1352
+2025-04-14 19:30:53,588 - urllib3.connectionpool - DEBUG - https://cas-bridge.xethub.hf.co:443 "GET /xet-bridge-us/621ffdc136468d709f1802ec/4042e40873843d80568f133b625a04b27e90a6536b9abc2df10225fcd454a851?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20250414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250414T171118Z&X-Amz-Expires=3600&X-Amz-Signature=10d7c1f56574f2f42ebacc305c0120621bf78357b3f01b43bf0dc847863d8ea8&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27tokenizer.json%3B+filename%3D%22tokenizer.json%22%3B&response-content-type=application%2Fjson&x-id=GetObject&Expires=1744654278&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NDY1NDI3OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MjFmZmRjMTM2NDY4ZDcwOWYxODAyZWMvNDA0MmU0MDg3Mzg0M2Q4MDU2OGYxMzNiNjI1YTA0YjI3ZTkwYTY1MzZiOWFiYzJkZjEwMjI1ZmNkNDU0YTg1MSoifV19&Signature=m2ldeJuL~K~88uYRM4udlE2oPAKXzDmR6GaesWS0oO3SEBuJcyLwON0mkaopbFRFMvGPcTqb~YLoUJdqNuDVOROGV7sqSbvbs5Msi-ytpmN0-6B48strDu0h99mmFaEoZ6H43flp089zCQiMqVClHTyKf5if8Trb2wdMk4TOazQMeIO-ubYXH-FmiGAVM4x99ymqVRtmbx9lqL1p9mGg6huXffgWZU4XWyGP2glaz-5DcEJVFXyJSQqOhJu8MaJEUw49PtKLdeQatLmMIEttyhFHw38v1SeJZ3iAQnFzAwJSidB41AfQs9wLugzsn7cKdm4XdsUUYqElBxYY14xqPQ__&Key-Pair-Id=K2L8F4GPSG1IFC HTTP/1.1" 200 9081518
+2025-04-14 19:30:54,350 - filelock - DEBUG - Attempting to release lock 1809335483088 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8.lock
+2025-04-14 19:30:54,351 - filelock - DEBUG - Lock 1809335483088 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8.lock
+2025-04-14 19:30:54,518 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2025-04-14 19:30:54,676 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2025-04-14 19:30:54,678 - filelock - DEBUG - Attempting to acquire lock 1809331685776 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2ea7ad0e45a9d1d1591782ba7e29a703d0758831.lock
+2025-04-14 19:30:54,679 - filelock - DEBUG - Lock 1809331685776 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2ea7ad0e45a9d1d1591782ba7e29a703d0758831.lock
+2025-04-14 19:30:54,819 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/special_tokens_map.json HTTP/1.1" 200 239
+2025-04-14 19:30:54,827 - filelock - DEBUG - Attempting to release lock 1809331685776 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2ea7ad0e45a9d1d1591782ba7e29a703d0758831.lock
+2025-04-14 19:30:54,827 - filelock - DEBUG - Lock 1809331685776 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\2ea7ad0e45a9d1d1591782ba7e29a703d0758831.lock
+2025-04-14 19:30:54,971 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/chat_template.jinja HTTP/1.1" 404 0
+2025-04-14 19:30:56,137 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/revision/main HTTP/1.1" 200 6119
+2025-04-14 19:30:56,155 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:30:56,556 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/86741b4e3f5cb7765a600d3a3d55a0f6a6cb443d/1_Pooling/config.json HTTP/1.1" 200 0
+2025-04-14 19:30:56,560 - filelock - DEBUG - Attempting to acquire lock 1809336229712 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\d1514c3162bbe87b343f565fadc62e6c06f04f03.lock
+2025-04-14 19:30:56,567 - filelock - DEBUG - Lock 1809336229712 acquired on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\d1514c3162bbe87b343f565fadc62e6c06f04f03.lock
+2025-04-14 19:30:56,937 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/86741b4e3f5cb7765a600d3a3d55a0f6a6cb443d/1_Pooling/config.json HTTP/1.1" 200 190
+2025-04-14 19:30:56,968 - filelock - DEBUG - Attempting to release lock 1809336229712 on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\d1514c3162bbe87b343f565fadc62e6c06f04f03.lock
+2025-04-14 19:30:56,968 - filelock - DEBUG - Lock 1809336229712 released on C:\Users\OrmaLabUser\.cache\huggingface\hub\.locks\models--sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2\d1514c3162bbe87b343f565fadc62e6c06f04f03.lock
+2025-04-14 19:30:57,221 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 HTTP/1.1" 200 6119
+2025-04-14 19:30:57,226 - performance - INFO - Modello embedding caricato in 60.2907 secondi
+2025-04-14 19:30:57,227 - chat_mode - INFO - Inizializzazione modalità chat
+2025-04-14 19:30:57,227 - chat_mode - INFO - Modalità chat inizializzata
+2025-04-14 19:30:57,227 - chat_mode - INFO - Inizializzazione modalità chat
+2025-04-14 19:30:57,227 - chat_mode - INFO - Modalità chat inizializzata
+2025-04-14 19:30:57,232 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:30:57,233 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:30:57,245 - httpcore.connection - DEBUG - connect_tcp.started host='api.gradio.app' port=443 local_address=None timeout=3 socket_options=None
+2025-04-14 19:30:57,526 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A544D7DBD0>
+2025-04-14 19:30:57,526 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001A544D8C050> server_hostname='api.gradio.app' timeout=3
+2025-04-14 19:30:57,661 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-04-14 19:30:57,679 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:30:57,773 - httpcore.connection - DEBUG - connect_tcp.started host='127.0.0.1' port=7860 local_address=None timeout=None socket_options=None
+2025-04-14 19:30:57,777 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A544E01E90>
+2025-04-14 19:30:57,778 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-04-14 19:30:57,779 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:30:57,779 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-04-14 19:30:57,780 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:30:57,780 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-04-14 19:30:57,780 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Mon, 14 Apr 2025 17:30:57 GMT'), (b'server', b'uvicorn'), (b'content-length', b'4'), (b'content-type', b'application/json')])
+2025-04-14 19:30:57,780 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-04-14 19:30:57,781 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-04-14 19:30:57,781 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:30:57,781 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:30:57,781 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:30:57,781 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:30:57,782 - httpcore.connection - DEBUG - close.complete
+2025-04-14 19:30:57,782 - httpcore.connection - DEBUG - connect_tcp.started host='127.0.0.1' port=7860 local_address=None timeout=3 socket_options=None
+2025-04-14 19:30:57,785 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A544F6A9D0>
+2025-04-14 19:30:57,786 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'HEAD']>
+2025-04-14 19:30:57,786 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:30:57,787 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'HEAD']>
+2025-04-14 19:30:57,787 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:30:57,787 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'HEAD']>
+2025-04-14 19:30:57,812 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Mon, 14 Apr 2025 17:30:57 GMT'), (b'server', b'uvicorn'), (b'content-length', b'78018'), (b'content-type', b'text/html; charset=utf-8')])
+2025-04-14 19:30:57,813 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-04-14 19:30:57,813 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'HEAD']>
+2025-04-14 19:30:57,814 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:30:57,814 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:30:57,814 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:30:57,814 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:30:57,815 - httpcore.connection - DEBUG - close.complete
+2025-04-14 19:30:57,818 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:30:57,933 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001A54B37ADD0>
+2025-04-14 19:30:57,933 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-04-14 19:30:57,934 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:30:57,934 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-04-14 19:30:57,934 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:30:57,935 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-04-14 19:30:58,130 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 14 Apr 2025 17:32:29 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'21'), (b'Connection', b'keep-alive'), (b'Server', b'nginx/1.18.0'), (b'Access-Control-Allow-Origin', b'*')])
+2025-04-14 19:30:58,130 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-04-14 19:30:58,131 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-04-14 19:30:58,131 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:30:58,131 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:30:58,131 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:30:58,131 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:30:58,131 - httpcore.connection - DEBUG - close.complete
+2025-04-14 19:30:58,218 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-04-14 19:31:10,326 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-04-14 19:31:10,326 - performance - INFO - Caricamento modello embedding: paraphrase-multilingual-MiniLM-L12-v2
+2025-04-14 19:31:10,326 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-14 19:31:10,326 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-MiniLM-L12-v2
+2025-04-14 19:31:10,326 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:31:10,506 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json HTTP/1.1" 200 0
+2025-04-14 19:31:10,648 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 200 0
+2025-04-14 19:31:10,805 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md HTTP/1.1" 200 0
+2025-04-14 19:31:10,960 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json HTTP/1.1" 200 0
+2025-04-14 19:31:11,104 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 200 0
+2025-04-14 19:31:11,252 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json HTTP/1.1" 404 0
+2025-04-14 19:31:11,393 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json HTTP/1.1" 200 0
+2025-04-14 19:31:12,096 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-04-14 19:31:13,250 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/revision/main HTTP/1.1" 200 6119
+2025-04-14 19:31:13,426 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 HTTP/1.1" 200 6119
+2025-04-14 19:31:13,438 - performance - INFO - Modello embedding caricato in 3.1118 secondi
+2025-04-14 19:31:13,439 - chat_mode - INFO - Inizializzazione modalità chat
+2025-04-14 19:31:13,439 - chat_mode - INFO - Modalità chat inizializzata
+2025-04-14 19:31:13,439 - chat_mode - INFO - Inizializzazione modalità chat
+2025-04-14 19:31:13,439 - chat_mode - INFO - Modalità chat inizializzata
+2025-04-14 19:31:13,445 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:31:13,447 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:31:13,458 - httpcore.connection - DEBUG - connect_tcp.started host='api.gradio.app' port=443 local_address=None timeout=3 socket_options=None
+2025-04-14 19:31:13,632 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-04-14 19:31:13,637 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:31:13,662 - httpcore.connection - DEBUG - connect_tcp.started host='127.0.0.1' port=7861 local_address=None timeout=None socket_options=None
+2025-04-14 19:31:13,664 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000017305436810>
+2025-04-14 19:31:13,665 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-04-14 19:31:13,666 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:31:13,667 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-04-14 19:31:13,667 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:31:13,667 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-04-14 19:31:13,668 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Mon, 14 Apr 2025 17:31:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'4'), (b'content-type', b'application/json')])
+2025-04-14 19:31:13,668 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7861/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-04-14 19:31:13,668 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-04-14 19:31:13,668 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:31:13,668 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:31:13,668 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:31:13,670 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:31:13,670 - httpcore.connection - DEBUG - close.complete
+2025-04-14 19:31:13,671 - httpcore.connection - DEBUG - connect_tcp.started host='127.0.0.1' port=7861 local_address=None timeout=3 socket_options=None
+2025-04-14 19:31:13,673 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000017305437B10>
+2025-04-14 19:31:13,673 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'HEAD']>
+2025-04-14 19:31:13,673 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:31:13,674 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'HEAD']>
+2025-04-14 19:31:13,674 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:31:13,674 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'HEAD']>
+2025-04-14 19:31:13,686 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Mon, 14 Apr 2025 17:31:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'78017'), (b'content-type', b'text/html; charset=utf-8')])
+2025-04-14 19:31:13,687 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7861/ "HTTP/1.1 200 OK"
+2025-04-14 19:31:13,687 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'HEAD']>
+2025-04-14 19:31:13,687 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:31:13,688 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:31:13,688 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:31:13,688 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:31:13,688 - httpcore.connection - DEBUG - close.complete
+2025-04-14 19:31:13,690 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-04-14 19:31:13,696 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000173052CAE50>
+2025-04-14 19:31:13,696 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001730509DEB0> server_hostname='api.gradio.app' timeout=3
+2025-04-14 19:31:14,094 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-04-14 19:31:14,106 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000017305188150>
+2025-04-14 19:31:14,106 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-04-14 19:31:14,106 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-04-14 19:31:14,108 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-04-14 19:31:14,109 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-04-14 19:31:14,109 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-04-14 19:31:14,301 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 14 Apr 2025 17:32:45 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'21'), (b'Connection', b'keep-alive'), (b'Server', b'nginx/1.18.0'), (b'Access-Control-Allow-Origin', b'*')])
+2025-04-14 19:31:14,309 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-04-14 19:31:14,309 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-04-14 19:31:14,309 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-04-14 19:31:14,309 - httpcore.http11 - DEBUG - response_closed.started
+2025-04-14 19:31:14,319 - httpcore.http11 - DEBUG - response_closed.complete
+2025-04-14 19:31:14,322 - httpcore.connection - DEBUG - close.started
+2025-04-14 19:31:14,324 - httpcore.connection - DEBUG - close.complete
