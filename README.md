@@ -1,21 +1,21 @@
-# Prompt Rover - tracing LLM Latent Space
+# Vector Rover - Tracing LLM Latent Space through prompting
 
-## Panoramica
-Il `ConceptTransformationVisualizer` è uno strumento per estrarre, analizzare e visualizzare concetti da testi in modo interattivo. Utilizzando tecniche di embedding, riduzione dimensionale e visualizzazione di grafi, permette di esplorare le relazioni semantiche tra concetti in diversi contesti testuali.
+## Overview
+`VectorRover` is a tool for extracting, analyzing, and visualizing concepts from texts interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic relationships between concepts in different textual contexts.
 
-## Funzionalità principali
+## Key Features
 
-- **Estrazione di concetti**: Estrazione automatica di concetti chiave da testi utilizzando modelli linguistici (spaCy o OpenAI)
-- **Embedding semantico**: Conversione di concetti in vettori semantici utilizzando SentenceTransformer
-- **Visualizzazione interattiva**: Rappresentazione bidimensionale dei concetti con UMAP, t-SNE o PCA
-- **Analisi grafica**: Costruzione e visualizzazione di grafi concettuali basati su similarità
-- **Modalità Input/Output**: Confronto tra concetti in testi di input e output
-- **Modalità Chat**: Visualizzazione dell'evoluzione dei concetti durante una conversazione
+- **Concept Extraction**: Automatic extraction of key concepts from texts using language models (spaCy or OpenAI)
+- **Semantic Embedding**: Conversion of concepts into semantic vectors using SentenceTransformer
+- **Interactive Visualization**: Two-dimensional representation of concepts with UMAP, t-SNE, or PCA
+- **Graph Analysis**: Construction and visualization of concept graphs based on similarity
+- **Input/Output Mode**: Comparison between concepts in input and output texts
+- **Chat Mode**: Visualization of concept evolution during a conversation
 
-## Requisiti
+## Requirements
 
 - Python 3.7+
-- Dipendenze principali:
+- Main dependencies:
   ```
   sentence-transformers
   spacy
@@ -25,80 +25,80 @@ Il `ConceptTransformationVisualizer` è uno strumento per estrarre, analizzare e
   pandas
   gradio
   ```
-- Modelli spaCy (utilizzare `python -m spacy download it_core_news_sm` o equivalente)
-- Opzionale: Chiave API OpenAI per estrazione concetti avanzata
+- spaCy models (use `python -m spacy download it_core_news_sm` or equivalent)
+- Optional: OpenAI API key for advanced concept extraction
 
-## Utilizzo
+## Usage
 
-### Tramite interfaccia Gradio
+### Via Gradio Interface
 
-1. Eseguire `run_in_colab()` in Google Colab o lanciare lo script principale
-2. Utilizzare l'interfaccia per:
-   - **Modalità Input/Output**: Inserire testi di input e output per comparare concetti
-   - **Modalità Chat**: Conversare e vedere l'evoluzione dei concetti nei messaggi
+1. Run `run_in_colab()` in Google Colab or launch the main script
+2. Use the interface for:
+   - **Input/Output Mode**: Enter input and output texts to compare concepts
+   - **Chat Mode**: Converse and see the evolution of concepts in messages
 
-### Tramite API Python
+### Via Python API
 
 ```python
 from concept_transform import ConceptTransformationVisualizer
 
-# Inizializzazione
+# Initialization
 visualizer = ConceptTransformationVisualizer(
     embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
-    openai_api_key="your_api_key"  # Opzionale
+    openai_api_key="your_api_key"  # Optional
 )
 
-# Modalità Input/Output
+# Input/Output Mode
 df, fig, status = visualizer.process_text_pair(
-    input_text="testo di input",
-    output_text="testo di output",
-    use_llm=True,  # Usa OpenAI per estrazione concetti
-    dim_reduction="umap"  # o "tsne", "pca"
+    input_text="input text",
+    output_text="output text",
+    use_llm=True,  # Use OpenAI for concept extraction
+    dim_reduction="umap"  # or "tsne", "pca"
 )
 
-# Visualizzazione personalizzata
+# Custom Visualization
 fig = visualizer.visualize_concepts(
     df,
     show_evolution=False,
-    title="Mia visualizzazione personalizzata"
+    title="My Custom Visualization"
 )
 ```
 
-# Diagramma di Flusso: ConceptTransformationVisualizer
+# Flow Diagram: ConceptTransformationVisualizer
 
 ```mermaid
 flowchart TD
-    A[Input Testo/Conversazione] --> B[Estrazione Concetti]
+    A[Text Input/Conversation] --> B[Concept Extraction]
     B -->|LLM| B1[extract_concepts_with_llm]
-    B -->|Alternativo| B2[extract_concepts_alternative]
-    B1 & B2 --> C[Calcolo Embedding]
+    B -->|Alternative| B2[extract_concepts_alternative]
+    B1 & B2 --> C[Embedding Calculation]
     
-    C -->|SentenceTransformer| D[Analisi Rete]
+    C -->|SentenceTransformer| D[Network Analysis]
     
-    D -->|MST o k-NN| D1[build_concept_graph]
-    D1 --> E[Riduzione Dimensionale]
+    D -->|MST or k-NN| D1[build_concept_graph]
+    D1 --> E[Dimensionality Reduction]
     
     E -->|UMAP| E1[reduce_dimensions]
     E -->|t-SNE| E2[reduce_dimensions]
     E -->|PCA| E3[reduce_dimensions]
     
-    E1 & E2 & E3 --> F[Visualizzazione]
+    E1 & E2 & E3 --> F[Visualization]
     
     F -->|Standard| F1[visualize_concepts\nshow_evolution=false]
-    F -->|Evoluzione| F2[visualize_concepts\nshow_evolution=true]
+    F -->|Evolution| F2[visualize_concepts\nshow_evolution=true]
     
-    F1 & F2 --> G[Output Grafico]
+    F1 & F2 --> G[Graphic Output]
     
     H[(Cache)] <-.-> B
     H <-.-> C
     H <-.-> D
     H <-.-> E
     
-    subgraph "Modalità Input/Output"
+    subgraph "Input/Output Mode"
     I[process_text_pair]
     end
     
-    subgraph "Modalità Chat"
+    subgraph "Chat Mode"
     J[process_new_message]
     end
     
@@ -111,111 +111,114 @@ flowchart TD
     style J fill:#ffead0,stroke:#333
 ```
 
-## Descrizione del flusso
+## Flow Description
 
-1. **Input**: Il processo inizia con un testo o messaggio di conversazione
-   - In modalità Input/Output: elaborazione di due testi separati
-   - In modalità Chat: elaborazione di messaggi sequenziali
+1. **Input**: The process begins with a text or conversation message
+   - In Input/Output mode: processing of two separate texts
+   - In Chat mode: processing of sequential messages
 
-2. **Estrazione Concetti**: Identificazione di concetti chiave dal testo
-   - Metodo LLM (`extract_concepts_with_llm`): Utilizza OpenAI per estrazione avanzata
-   - Metodo Alternativo (`extract_concepts_alternative`): Utilizza spaCy per estrazione locale
+2. **Concept Extraction**: Identification of key concepts from the text
+   - LLM Method (`extract_concepts_with_llm`): Uses OpenAI for advanced extraction
+   - Alternative Method (`extract_concepts_alternative`): Uses spaCy for local extraction
 
-3. **Calcolo Embedding**: Trasformazione dei concetti in vettori semantici
-   - `compute_embeddings`: Elabora sia il nome che la descrizione di ogni concetto
+3. **Embedding Calculation**: Transformation of concepts into semantic vectors
+   - `compute_embeddings`: Processes both the name and description of each concept
 
-4. **Analisi Rete**: Costruzione di un grafo basato su relazioni tra concetti
-   - `build_concept_graph`: Crea un MST (Minimum Spanning Tree) o grafo k-NN
+4. **Network Analysis**: Construction of a graph based on relationships between concepts
+   - `build_concept_graph`: Creates an MST (Minimum Spanning Tree) or k-NN graph
 
-5. **Riduzione Dimensionale**: Proiezione degli embedding in spazio 2D
-   - `reduce_dimensions`: Implementa UMAP, t-SNE o PCA in base alla preferenza
+5. **Dimensionality Reduction**: Projection of embeddings into 2D space
+   - `reduce_dimensions`: Implements UMAP, t-SNE, or PCA based on preference
 
-6. **Visualizzazione**: Creazione del grafico finale
-   - `visualize_concepts`: Metodo unificato con supporto per evoluzione temporale
-   - Output standard o con evoluzione temporale (per modalità Chat)
+6. **Visualization**: Creation of the final graphic
+   - `visualize_concepts`: Unified method with support for temporal evolution
+   - Standard output or with temporal evolution (for Chat mode)
 
-7. **Cache**: Memorizzazione di risultati intermedi per ottimizzare performance
-   - Riutilizzo di concetti, embedding, grafi e proiezioni quando possibile
+7. **Cache**: Storage of intermediate results to optimize performance
+   - Reuse of concepts, embeddings, graphs, and projections when possible
 
-Questo flusso si applica sia alla modalità Input/Output (tramite `process_text_pair`) che alla modalità Chat (tramite `process_new_message`), con differenze nella gestione dello stato tra messaggi sequenziali.
+This flow applies to both Input/Output mode (via `process_text_pair`) and Chat mode (via `process_new_message`), with differences in state management between sequential messages.
 
+## Code Structure
 
-## Struttura del codice
+- **Concept extraction**: `extract_concepts_with_llm()` and `extract_concepts_alternative()`
+- **Embedding management**: `compute_embeddings()`
+- **Graph construction**: `build_concept_graph()`
+- **Dimensionality reduction**: `reduce_dimensions()`
+- **Visualization**: `visualize_concepts()` (unified)
+- **Process flows**: `process_text_pair()` and `process_new_message()`
+- **Interface**: Functions for Gradio integration
 
-- **Estrazione concetti**: `extract_concepts_with_llm()` e `extract_concepts_alternative()`
-- **Gestione embedding**: `compute_embeddings()`
-- **Costruzione grafo**: `build_concept_graph()`
-- **Riduzione dimensionale**: `reduce_dimensions()`
-- **Visualizzazione**: `visualize_concepts()` (unificata)
-- **Flussi di processo**: `process_text_pair()` e `process_new_message()`
-- **Interfaccia**: Funzioni per l'integrazione con Gradio
+## Recent Improvements
 
-## Miglioramenti recenti
+1. **Chat response based on conversation**:
+   - Generates contextual responses rather than static ones in chat mode
+   - Fallback to predefined variable responses if OpenAI is not available
 
-1. **Risposta di chat basata sulla conversazione**:
-   - Genera risposte contestuali anziché statiche nella modalità chat
-   - Fallback a risposte variabili predefinite se OpenAI non è disponibile
+2. **Improved error handling**:
+   - API call timeout management
+   - Automatic fallback to alternative methods
+   - Detailed error logging
 
-2. **Gestione errori migliorata**:
-   - Gestione timeout nelle chiamate API
-   - Fallback automatico a metodi alternativi
-   - Logging dettagliato degli errori
+3. **Centralized OpenAI initialization**:
+   - Unified `initialize_openai_client()` method
+   - Consistency in API key management
 
-3. **Inizializzazione OpenAI centralizzata**:
-   - Metodo unificato `initialize_openai_client()`
-   - Consistenza nella gestione delle chiavi API
+4. **Coherent caching system**:
+   - Cache for concepts, embeddings, dimensional reductions, and graphs
+   - Reuse of dimensional reducers when possible
+   - Parameterized cache keys
 
-4. **Sistema di caching coerente**:
-   - Cache per concetti, embedding, riduzioni dimensionali e grafi
-   - Riutilizzo dei reducer dimensionali quando possibile
-   - Chiavi di cache parametrizzate
+5. **Unified visualization**:
+   - `visualize_concepts()` method that replaces previous separate methods
+   - Standardized constants for colors and column names
+   - Robust column name management for backward compatibility
 
-5. **Visualizzazione unificata**:
-   - Metodo `visualize_concepts()` che sostituisce i precedenti metodi separati
-   - Costanti standardizzate per colori e nomi di colonne
-   - Gestione robusta dei nomi delle colonne per retrocompatibilità
+6. **Performance monitoring**:
+   - `log_execution_time` decorator for tracking function performance
+   - Detailed logging with different categories (performance, visualization, chat)
 
-## Test manuali consigliati
+## Recommended Manual Tests
 
-Per testare la visualizzazione, suggeriamo:
+To test the visualization, we suggest:
 
-1. **Test base Input/Output**:
-   - Utilizzare l'esempio precaricato "fiori e saggezza"
-   - Verificare che i concetti di input e output siano distinguibili
-   - Controllare che i collegamenti del grafo siano appropriati
+1. **Basic Input/Output Test**:
+   - Use the preloaded "flowers and wisdom" example
+   - Verify that input and output concepts are distinguishable
+   - Check that graph connections are appropriate
 
-2. **Test modalità Chat**:
-   - Inviare 3-4 messaggi correlati (es. su un argomento specifico)
-   - Verificare che i colori distinguano utente e sistema
-   - Controllare che concetti simili siano collegati tra messaggi
-   - Verificare che l'evoluzione temporale sia visibile (concetti più vecchi più trasparenti)
+2. **Chat Mode Test**:
+   - Send 3-4 related messages (e.g., on a specific topic)
+   - Verify that colors distinguish user and system
+   - Check that similar concepts are connected between messages
+   - Verify that temporal evolution is visible (older concepts more transparent)
 
-3. **Test di visualizzazione con parametri diversi**:
-   - Provare diverse riduzioni dimensionali (UMAP, t-SNE, PCA)
-   - Alternare tra MST e k-NN per la costruzione del grafo
-   - Modificare il peso nome/descrizione e verificare l'impatto
+3. **Visualization Test with Different Parameters**:
+   - Try different dimensional reductions (UMAP, t-SNE, PCA)
+   - Switch between MST and k-NN for graph construction
+   - Modify the name/description weight and check the impact
 
-4. **Test di resilienza**:
-   - Provare testi molto brevi o molto lunghi
-   - Verificare comportamento con testi in diverse lingue
-   - Inserire caratteri speciali o emoji
+4. **Resilience Test**:
+   - Try very short or very long texts
+   - Verify behavior with texts in different languages
+   - Insert special characters or emojis
 
-## Sviluppi futuri
+## Future Developments
 
-- Ulteriore refactoring per modularità
-- Suite di test automatizzati
-- Supporto multilingua migliorato
-- Modalità di confronto di più testi
-- Esportazione di grafi e risultati
+- Further refactoring for modularity
+- Automated test suite
+- Improved multilingual support
+- Multi-text comparison mode
+- Export of graphs and results
 
-## Note per i tester
+## Notes for Testers
 
-Quando si verifica la visualizzazione, considerare:
+When verifying the visualization, consider:
 
-1. **Leggibilità**: Etichette, colori e disposizione sono facilmente interpretabili?
-2. **Coerenza semantica**: I concetti simili appaiono vicini nel grafico?
-3. **Efficacia del grafo**: I collegamenti riflettono relazioni significative?
-4. **Performance**: Il sistema risponde in tempi ragionevoli con testi di diverse dimensioni?
-5. **Esperienza utente**: L'interfaccia e le visualizzazioni sono intuitive?
+1. **Readability**: Are labels, colors, and layout easily interpretable?
+2. **Semantic coherence**: Do similar concepts appear close in the graph?
+3. **Graph effectiveness**: Do connections reflect meaningful relationships?
+4. **Performance**: Does the system respond in reasonable times with texts of different sizes?
+5. **User experience**: Are the interface and visualizations intuitive?
 
-I feedback su questi aspetti saranno preziosi per miglioramenti futuri.
+Feedback on these aspects will be valuable for future improvements.

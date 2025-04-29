@@ -9,6 +9,7 @@ spacy>=3.5.0
 gradio>=3.32.0
 openai>=1.0.0
 ipython>=7.0.0
+python-dotenv>=0.19.0
 
 # Language models for spaCy
 # After installing requirements, run:

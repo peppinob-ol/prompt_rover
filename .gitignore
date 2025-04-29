@@ -8,6 +8,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#test
+tests/
+
 # Distribution / packaging
 dist/
 build/
