@@ -178,30 +178,7 @@ This flow applies to both Input/Output mode (via `process_text_pair`) and Chat m
    - `log_execution_time` decorator for tracking function performance
    - Detailed logging with different categories (performance, visualization, chat)
 
-## Recommended Manual Tests
 
-To test the visualization, we suggest:
-
-1. **Basic Input/Output Test**:
-   - Use the preloaded "flowers and wisdom" example
-   - Verify that input and output concepts are distinguishable
-   - Check that graph connections are appropriate
-
-2. **Chat Mode Test**:
-   - Send 3-4 related messages (e.g., on a specific topic)
-   - Verify that colors distinguish user and system
-   - Check that similar concepts are connected between messages
-   - Verify that temporal evolution is visible (older concepts more transparent)
-
-3. **Visualization Test with Different Parameters**:
-   - Try different dimensional reductions (UMAP, t-SNE, PCA)
-   - Switch between MST and k-NN for graph construction
-   - Modify the name/description weight and check the impact
-
-4. **Resilience Test**:
-   - Try very short or very long texts
-   - Verify behavior with texts in different languages
-   - Insert special characters or emojis
 
 ## Future Developments
 
@@ -210,6 +187,7 @@ To test the visualization, we suggest:
 - Improved multilingual support
 - Multi-text comparison mode
 - Export of graphs and results
+- Enhanced dynamic visualization with concept highlighting related to the targeted message (on hover)
 
 ## Notes for Testers
 
