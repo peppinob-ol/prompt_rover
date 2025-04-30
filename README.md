@@ -1,7 +1,7 @@
 # Prompt Rover - Tracing LLM Latent Space through prompting
 
 ## Overview
-`VectorRover` is a tool for extracting, analyzing, and visualizing concepts from texts interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic relationships between concepts in different textual contexts.
+`PromptRover` is a tool for extracting, analyzing, and visualizing concepts from texts interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic relationships between concepts in different textual contexts.
 
 ## Key Features
 
