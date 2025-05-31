@@ -2,6 +2,9 @@
 
 ## Overview
 `PromptRover` is a tool for extracting, analyzing, and visualizing concepts from texts interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic relationships between concepts in different textual contexts.
+This repository contains the code from the talk “AI Intuition: Exploring Language Model Latent Space”.
+You can view the accompanying slides here:
+https://www.canva.com/design/DAGoEGv7WRY/SiP8NIUORZucTXbMSUGTmg/view?utm_content=DAGoEGv7WRY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc870d079bf
 
 ## Key Features
 
