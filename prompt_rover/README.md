@@ -51,4 +51,6 @@ Il progetto utilizza un'architettura modulare:
 - 💡 [Contribuisci](https://github.com/your-username/prompt-rover/pulls)
 
 ---
-*Powered by Gradio, SentenceTransformers, e NetworkX* 
+*Powered by Gradio, SentenceTransformers, e NetworkX*
+
+<!-- Deployment trigger: force new workflow run --> 
