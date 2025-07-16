@@ -6,8 +6,8 @@ Entry point per il deployment su HF Spaces
 import os
 import sys
 
-# Aggiungi il percorso del package al path Python
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Aggiungi il percorso della directory padre al path Python (per trovare prompt_rover/)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Importa e lancia l'app Gradio
 from prompt_rover.ui import create_gradio_interface
