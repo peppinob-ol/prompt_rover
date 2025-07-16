@@ -54,28 +54,54 @@ jobs:
         echo "📁 Contenuto prompt_rover/:"
         ls -la prompt_rover/
     
-    # 4. Deploy su HuggingFace Spaces
+    # 4. Deploy su HuggingFace Spaces usando git
     - name: Deploy to HuggingFace Spaces
-      uses: huggingface/huggingface_hub@main
-      with:
-        # Repository HF Spaces (formato: username/space-name)
-        repository: Peppinob/prompt_rover
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        echo "🚀 Iniziando deployment su HuggingFace Spaces..."
         
-        # Token HF (configurato come GitHub secret)
-        token: ${{ secrets.HF_TOKEN }}
+        # Configura git per HuggingFace
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
         
-        # Cartella locale da sincronizzare
-        folder: prompt_rover
+        # Clona lo space HuggingFace
+        echo "📥 Clono lo space HuggingFace..."
+        git clone https://huggingface.co/spaces/Peppinob/prompt_rover hf_space_temp
+        cd hf_space_temp
         
-        # Tipo di repository
-        repo-type: space
+        # Configura il token per autenticazione
+        git remote set-url origin https://Peppinob:$HF_TOKEN@huggingface.co/spaces/Peppinob/prompt_rover
         
-        # Commit message personalizzato
-        commit-message: |
-          🚀 Auto-deploy from GitHub
+        # Rimuovi tutto il contenuto esistente (tranne .git)
+        echo "🧹 Pulizia contenuto esistente..."
+        find . -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+        
+        # Copia il contenuto di prompt_rover/
+        echo "📂 Copio contenuto da prompt_rover/..."
+        cp -r ../prompt_rover/* .
+        
+        # Verifica che ci siano modifiche da committare
+        if [[ -n $(git status --porcelain) ]]; then
+          echo "📝 Commit delle modifiche..."
+          git add .
+          git commit -m "🚀 Auto-deploy from GitHub
+
+Sync from commit: ${{ github.sha }}
+Branch: ${{ github.ref_name }}
+Deployed at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           
-          Sync from commit: ${{ github.sha }}
-          Branch: ${{ github.ref_name }}
+          echo "⬆️ Push su HuggingFace Spaces..."
+          git push origin main
+          
+          echo "✅ Deployment completato!"
+        else
+          echo "ℹ️ Nessuna modifica da deployare"
+        fi
+        
+        # Pulizia
+        cd ..
+        rm -rf hf_space_temp
           
     # 5. Notifica risultato
     - name: Deployment success notification
