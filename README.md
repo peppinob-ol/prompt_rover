@@ -32,35 +32,57 @@
 
 ### Via Gradio Interface
 
-1. Run `run_in_colab()` in Google Colab or launch the main script
-2. Use the interface for:
-   - **Input/Output Mode**: Enter input and output texts to compare concepts
-   - **Chat Mode**: Converse and see the evolution of concepts in messages
+#### Metodo 1: Esecuzione Diretta
+```bash
+cd prompt_rover
+python app.py
+```
+
+#### Metodo 2: Tramite Modulo Python
+```python
+from prompt_rover.ui import create_gradio_interface
+
+# Crea e lancia l'interfaccia
+demo = create_gradio_interface()
+demo.launch()
+```
+
+L'interfaccia offre:
+- **Input/Output Mode**: Inserisci testi di input e output per confrontare i concetti
+- **Chat Mode**: Conversa e osserva l'evoluzione dei concetti nei messaggi
 
 ### Via Python API
 
 ```python
-from concept_transform import ConceptTransformationVisualizer
+from prompt_rover import ConceptTransformationVisualizer
 
-# Initialization
+# Inizializzazione
 visualizer = ConceptTransformationVisualizer(
     embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
-    openai_api_key="your_api_key"  # Optional
+    openai_api_key="your_api_key"  # Opzionale
 )
 
-# Input/Output Mode
+# Modalità Input/Output
 df, fig, status = visualizer.process_text_pair(
-    input_text="input text",
-    output_text="output text",
-    use_llm=True,  # Use OpenAI for concept extraction
-    dim_reduction="umap"  # or "tsne", "pca"
+    input_text="testo di input",
+    output_text="testo di output",
+    use_llm=True,  # Usa OpenAI per estrazione concetti
+    dim_reduction="umap"  # o "tsne", "pca"
 )
 
-# Custom Visualization
-fig = visualizer.visualize_concepts(
+# Visualizzazione personalizzata
+fig = visualizer.visualize_concepts_interactive(
     df,
     show_evolution=False,
-    title="My Custom Visualization"
+    title="La Mia Visualizzazione"
+)
+
+# Modalità Chat
+visualizer.initialize_chat_mode()
+df, fig, status = visualizer.process_new_message(
+    "Ciao, come va?",
+    is_user=True,
+    use_llm=True
 )
 ```
 
