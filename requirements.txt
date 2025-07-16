@@ -2,6 +2,7 @@ numpy>=1.22.0
 pandas>=1.5.0
 networkx>=2.8.0
 matplotlib>=3.5.0
+plotly>=5.14.0
 umap-learn>=0.5.3
 scikit-learn>=1.0.0
 sentence-transformers>=2.2.0
