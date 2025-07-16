@@ -1,0 +1,92 @@
+name: Deploy to HuggingFace Spaces
+
+# Trigger del workflow: push sui branch principali
+on:
+  push:
+    branches: 
+      - main
+      - refactor-modular-structure
+    paths:
+      - 'prompt_rover/**'  # Solo se ci sono modifiche in prompt_rover/
+
+# Permessi necessari
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout del repository GitHub
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch completo per git history
+    
+    # 2. Setup Python per eventuali test pre-deployment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # 3. Verifica che prompt_rover/ contenga i file necessari
+    - name: Validate deployment files
+      run: |
+        echo "🔍 Verifica file necessari per HF Spaces..."
+        
+        if [ ! -f "prompt_rover/app.py" ]; then
+          echo "❌ Manca app.py in prompt_rover/"
+          exit 1
+        fi
+        
+        if [ ! -f "prompt_rover/README.md" ]; then
+          echo "❌ Manca README.md in prompt_rover/"
+          exit 1
+        fi
+        
+        if [ ! -f "prompt_rover/requirements.txt" ]; then
+          echo "❌ Manca requirements.txt in prompt_rover/"
+          exit 1
+        fi
+        
+        echo "✅ Tutti i file necessari sono presenti"
+        echo "📁 Contenuto prompt_rover/:"
+        ls -la prompt_rover/
+    
+    # 4. Deploy su HuggingFace Spaces
+    - name: Deploy to HuggingFace Spaces
+      uses: huggingface/huggingface_hub@main
+      with:
+        # Repository HF Spaces (formato: username/space-name)
+        repository: Peppinob/prompt_rover
+        
+        # Token HF (configurato come GitHub secret)
+        token: ${{ secrets.HF_TOKEN }}
+        
+        # Cartella locale da sincronizzare
+        folder: prompt_rover
+        
+        # Tipo di repository
+        repo-type: space
+        
+        # Commit message personalizzato
+        commit-message: |
+          🚀 Auto-deploy from GitHub
+          
+          Sync from commit: ${{ github.sha }}
+          Branch: ${{ github.ref_name }}
+          
+    # 5. Notifica risultato
+    - name: Deployment success notification
+      if: success()
+      run: |
+        echo "🎉 Deployment completato con successo!"
+        echo "🔗 Space URL: https://huggingface.co/spaces/Peppinob/prompt_rover"
+        echo "📝 Commit: ${{ github.sha }}"
+        
+    - name: Deployment failure notification  
+      if: failure()
+      run: |
+        echo "❌ Deployment fallito!"
+        echo "📋 Controlla i log sopra per dettagli" 
