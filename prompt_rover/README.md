@@ -8,7 +8,7 @@ sdk_version: "4.21.0"
 app_file: app.py
 pinned: false
 license: mit
-short_description: "Interactive visualization of concepts from texts using embeddings and dimensionality reduction."
+short_description: "Explore semantic relationships between text concepts"
 ---
 
 # Prompt Rover - HuggingFace Spaces Deployment
