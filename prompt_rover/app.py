@@ -6,11 +6,17 @@ Entry point per il deployment su HF Spaces
 import os
 import sys
 
-# Aggiungi il percorso della directory padre al path Python (per trovare prompt_rover/)
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Configurazione path per funzionare sia in locale che su HF Spaces
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Importa e lancia l'app Gradio
-from prompt_rover.ui import create_gradio_interface
+# Se siamo in prompt_rover/ (locale), aggiungi parent directory
+if os.path.basename(current_dir) == 'prompt_rover':
+    sys.path.insert(0, os.path.dirname(current_dir))
+    from prompt_rover.ui import create_gradio_interface
+else:
+    # Se siamo su HF Spaces (root), importa direttamente
+    sys.path.insert(0, current_dir)
+    from ui import create_gradio_interface
 
 if __name__ == "__main__":
     # Crea e lancia l'interfaccia
