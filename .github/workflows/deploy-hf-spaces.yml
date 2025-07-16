@@ -85,11 +85,7 @@ jobs:
         if [[ -n $(git status --porcelain) ]]; then
           echo "📝 Commit delle modifiche..."
           git add .
-          git commit -m "🚀 Auto-deploy from GitHub
-
-Sync from commit: ${{ github.sha }}
-Branch: ${{ github.ref_name }}
-Deployed at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git commit -m "Auto-deploy from GitHub - Commit: ${{ github.sha }} - Branch: ${{ github.ref_name }}"
           
           echo "⬆️ Push su HuggingFace Spaces..."
           git push origin main
