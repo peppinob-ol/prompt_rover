@@ -80,6 +80,11 @@ jobs:
         # Copia la cartella prompt_rover/ intera
         echo "📂 Copio cartella prompt_rover/..."
         cp -r ../prompt_rover .
+
+        # Copia README e requirements nella root dello Space
+        echo "📄 Copio README.md e requirements.txt nella root..."
+        cp ../prompt_rover/README.md README.md
+        cp ../prompt_rover/requirements.txt requirements.txt
         
         # Verifica che ci siano modifiche da committare
         if [[ -n $(git status --porcelain) ]]; then
