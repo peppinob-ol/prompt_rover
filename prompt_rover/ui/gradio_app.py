@@ -88,11 +88,15 @@ def create_gradio_interface(visualizer=None):
                     
                     # Tab per modalità Chat
                     with gr.TabItem("Modalità Chat"):
-                        chatbot = gr.Chatbot(
-                            height=400,
-                            label="Conversazione",
-                            type="messages"
-                        )
+                        # Compatibilità con diverse versioni di Gradio
+                        import inspect as _ins
+                        _chatbot_kwargs = {
+                            "height": 400,
+                            "label": "Conversazione",
+                        }
+                        if "type" in _ins.signature(gr.Chatbot).parameters:
+                            _chatbot_kwargs["type"] = "messages"
+                        chatbot = gr.Chatbot(**_chatbot_kwargs)
                         chat_msg = gr.Textbox(
                             placeholder="Scrivi un messaggio qui...",
                             label="Messaggio"
