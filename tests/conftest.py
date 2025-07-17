@@ -23,23 +23,23 @@ def sample_concepts():
     """Concetti di esempio per i test"""
     return [
         {
-            "label": "intelligenza artificiale",
-            "category": "tecnologia",
-            "description": "Simulazione dell'intelligenza umana",
+            "label": "artificial intelligence",
+            "category": "technology",
+            "description": "Simulation of human intelligence",
             "content_type": "user",
             "source": "input"
         },
         {
             "label": "machine learning",
-            "category": "tecnologia",
-            "description": "Apprendimento automatico dai dati",
+            "category": "technology",
+            "description": "Automatic learning from data",
             "content_type": "user",
             "source": "input"
         },
         {
-            "label": "reti neurali",
-            "category": "tecnologia",
-            "description": "Modelli computazionali ispirati al cervello",
+            "label": "neural networks",
+            "category": "technology",
+            "description": "Computational models inspired by the brain",
             "content_type": "assistant",
             "source": "output"
         }
@@ -49,6 +49,6 @@ def sample_concepts():
 def sample_texts():
     """Testi di esempio per i test"""
     return {
-        "input": "L'intelligenza artificiale e il machine learning stanno rivoluzionando il mondo.",
-        "output": "Le reti neurali sono modelli computazionali che imitano il funzionamento del cervello umano."
+        "input": "Artificial intelligence and machine learning are revolutionizing the world.",
+        "output": "Neural networks are computational models that mimic the functioning of the human brain."
     } 

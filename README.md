@@ -3,6 +3,9 @@
 ## Overview
 `VectorRover` is a tool for extracting, analyzing, and visualizing concepts from llm chat text interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic and gemoetrical relationships between concepts.
 
+![Prompt Rover Interface](docs/images/gradio-interface-example.png)
+*Example of the Gradio interface showing concept visualization with the "flowers and wisdom" example*
+
 ## Key Features
 
 - **Concept Extraction**: Automatic extraction of key concepts from texts using language models (spaCy or OpenAI)
