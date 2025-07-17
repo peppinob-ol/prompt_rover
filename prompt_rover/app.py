@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     demo.launch(
         share=is_hf_space,
+        show_api=False,
         debug=bool(os.getenv("DEBUG", "True") == "True"),
         server_name="0.0.0.0",
         server_port=7860,
