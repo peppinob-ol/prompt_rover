@@ -1,0 +1,119 @@
+name: Deploy to HuggingFace Spaces
+
+# Trigger del workflow: push sui branch principali
+on:
+  push:
+    branches: 
+      - main
+      - refactor-modular-structure
+    paths:
+      - 'prompt_rover/**'  # Solo se ci sono modifiche in prompt_rover/
+
+# Permessi necessari
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout del repository GitHub
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch completo per git history
+    
+    # 2. Setup Python per eventuali test pre-deployment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # 3. Verifica che prompt_rover/ contenga i file necessari
+    - name: Validate deployment files
+      run: |
+        echo "🔍 Verifica file necessari per HF Spaces..."
+        
+        if [ ! -f "prompt_rover/app.py" ]; then
+          echo "❌ Manca app.py in prompt_rover/"
+          exit 1
+        fi
+        
+        if [ ! -f "prompt_rover/README.md" ]; then
+          echo "❌ Manca README.md in prompt_rover/"
+          exit 1
+        fi
+        
+        if [ ! -f "prompt_rover/requirements.txt" ]; then
+          echo "❌ Manca requirements.txt in prompt_rover/"
+          exit 1
+        fi
+        
+        echo "✅ Tutti i file necessari sono presenti"
+        echo "📁 Contenuto prompt_rover/:"
+        ls -la prompt_rover/
+    
+    # 4. Deploy su HuggingFace Spaces usando git
+    - name: Deploy to HuggingFace Spaces
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        echo "🚀 Iniziando deployment su HuggingFace Spaces..."
+        
+        # Configura git per HuggingFace
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        
+        # Clona lo space HuggingFace
+        echo "📥 Clono lo space HuggingFace..."
+        git clone https://huggingface.co/spaces/Peppinob/prompt_rover hf_space_temp
+        cd hf_space_temp
+        
+        # Configura il token per autenticazione
+        git remote set-url origin https://Peppinob:$HF_TOKEN@huggingface.co/spaces/Peppinob/prompt_rover
+        
+        # Rimuovi tutto il contenuto esistente (tranne .git)
+        echo "🧹 Pulizia contenuto esistente..."
+        find . -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+        
+        # Copia la cartella prompt_rover/ intera
+        echo "📂 Copio cartella prompt_rover/..."
+        cp -r ../prompt_rover .
+
+        # Copia README e requirements nella root dello Space
+        echo "📄 Copio README.md e requirements.txt nella root..."
+        cp ../prompt_rover/README.md README.md
+        cp ../prompt_rover/requirements.txt requirements.txt
+        
+        # Verifica che ci siano modifiche da committare
+        if [[ -n $(git status --porcelain) ]]; then
+          echo "📝 Commit delle modifiche..."
+          git add .
+          git commit -m "Auto-deploy from GitHub - Commit: ${{ github.sha }} - Branch: ${{ github.ref_name }}"
+          
+          echo "⬆️ Push su HuggingFace Spaces..."
+          git push origin main
+          
+          echo "✅ Deployment completato!"
+        else
+          echo "ℹ️ Nessuna modifica da deployare"
+        fi
+        
+        # Pulizia
+        cd ..
+        rm -rf hf_space_temp
+          
+    # 5. Notifica risultato
+    - name: Deployment success notification
+      if: success()
+      run: |
+        echo "🎉 Deployment completato con successo!"
+        echo "🔗 Space URL: https://huggingface.co/spaces/Peppinob/prompt_rover"
+        echo "📝 Commit: ${{ github.sha }}"
+        
+    - name: Deployment failure notification  
+      if: failure()
+      run: |
+        echo "❌ Deployment fallito!"
+        echo "📋 Controlla i log sopra per dettagli" 

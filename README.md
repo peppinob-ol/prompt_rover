@@ -1,10 +1,10 @@
-# Prompt Rover - Tracing LLM Latent Space through prompting
+# Vector Rover - Tracing LLM Latent Space through prompting
 
 ## Overview
-`PromptRover` is a tool for extracting, analyzing, and visualizing concepts from texts interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic relationships between concepts in different textual contexts.
-This repository contains the code from the talk “AI Intuition: Exploring Language Model Latent Space”.
-You can view the accompanying slides here:
-https://www.canva.com/design/DAGoEGv7WRY/SiP8NIUORZucTXbMSUGTmg/view?utm_content=DAGoEGv7WRY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc870d079bf
+`VectorRover` is a tool for extracting, analyzing, and visualizing concepts from llm chat text interactively. By using embedding techniques, dimensionality reduction, and graph visualization, it allows users to explore semantic and gemoetrical relationships between concepts.
+
+![Prompt Rover Interface](docs/images/gradio-interface-example.png)
+*Example of the Gradio interface showing concept visualization with the "flowers and wisdom" example*
 
 ## Key Features
 
@@ -35,35 +35,57 @@ https://www.canva.com/design/DAGoEGv7WRY/SiP8NIUORZucTXbMSUGTmg/view?utm_content
 
 ### Via Gradio Interface
 
-1. Run `run_in_colab()` in Google Colab or launch the main script
-2. Use the interface for:
-   - **Input/Output Mode**: Enter input and output texts to compare concepts
-   - **Chat Mode**: Converse and see the evolution of concepts in messages
+#### Metodo 1: Esecuzione Diretta
+```bash
+cd prompt_rover
+python app.py
+```
+
+#### Metodo 2: Tramite Modulo Python
+```python
+from prompt_rover.ui import create_gradio_interface
+
+# Crea e lancia l'interfaccia
+demo = create_gradio_interface()
+demo.launch()
+```
+
+L'interfaccia offre:
+- **Input/Output Mode**: Inserisci testi di input e output per confrontare i concetti
+- **Chat Mode**: Conversa e osserva l'evoluzione dei concetti nei messaggi
 
 ### Via Python API
 
 ```python
-from concept_transform import ConceptTransformationVisualizer
+from prompt_rover import ConceptTransformationVisualizer
 
-# Initialization
+# Inizializzazione
 visualizer = ConceptTransformationVisualizer(
     embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
-    openai_api_key="your_api_key"  # Optional
+    openai_api_key="your_api_key"  # Opzionale
 )
 
-# Input/Output Mode
+# Modalità Input/Output
 df, fig, status = visualizer.process_text_pair(
-    input_text="input text",
-    output_text="output text",
-    use_llm=True,  # Use OpenAI for concept extraction
-    dim_reduction="umap"  # or "tsne", "pca"
+    input_text="testo di input",
+    output_text="testo di output",
+    use_llm=True,  # Usa OpenAI per estrazione concetti
+    dim_reduction="umap"  # o "tsne", "pca"
 )
 
-# Custom Visualization
-fig = visualizer.visualize_concepts(
+# Visualizzazione personalizzata
+fig = visualizer.visualize_concepts_interactive(
     df,
     show_evolution=False,
-    title="My Custom Visualization"
+    title="La Mia Visualizzazione"
+)
+
+# Modalità Chat
+visualizer.initialize_chat_mode()
+df, fig, status = visualizer.process_new_message(
+    "Ciao, come va?",
+    is_user=True,
+    use_llm=True
 )
 ```
 
