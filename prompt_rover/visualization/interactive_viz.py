@@ -75,7 +75,7 @@ class InteractiveVisualizer:
         """Crea una figura vuota"""
         fig = go.Figure()
         fig.add_annotation(
-            text="Nessun concetto da visualizzare",
+            text="No concepts to visualize",
             showarrow=False,
             font=dict(size=14)
         )
@@ -191,8 +191,8 @@ class InteractiveVisualizer:
         hover_text = []
         for _, row in group_df.iterrows():
             text = f"<b>{row[label_col]}</b><br>"
-            text += f"Categoria: {row.get('category', 'N/A')}<br>"
-            text += f"Descrizione: {self._truncate_text(row.get('description', 'N/A'))}"
+            text += f"Category: {row.get('category', 'N/A')}<br>"
+            text += f"Description: {self._truncate_text(row.get('description', 'N/A'))}"
             
             if is_chat_mode and MESSAGE_ID in row:
                 text += f"<br>ID Messaggio: {row.get(MESSAGE_ID, 'N/A')}"
@@ -258,9 +258,9 @@ class InteractiveVisualizer:
         # Determina titolo
         if title is None:
             if show_evolution or is_chat_mode:
-                title = 'Evoluzione Concettuale della Conversazione'
+                title = 'Drift of Conversation Concepts'
             else:
-                title = 'Mappa Concettuale della Trasformazione'
+                title = 'Map of concept drift'
         
         # Aggiorna layout
         fig.update_layout(

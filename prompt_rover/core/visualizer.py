@@ -77,7 +77,7 @@ class ConceptTransformationVisualizer:
         self.chat_handler.reset()
         self.dimension_reducer.reset()
         self.cache.clear()
-        return "Modalità chat inizializzata"
+        return "Chat mode initialized"
     
     def extract_concepts_with_llm(self, text: str, is_user: bool, 
                                  model: str = "gpt-4", timeout: int = 30):
@@ -172,7 +172,7 @@ class ConceptTransformationVisualizer:
             # Crea visualizzazione
             fig = self.visualize_concepts_interactive(df)
             
-            return df, fig, "Elaborazione completata con successo"
+            return df, fig, "Processing completed successfully"
             
         except Exception as e:
             logger.error(f"Errore nell'elaborazione: {e}")
@@ -181,10 +181,10 @@ class ConceptTransformationVisualizer:
             # Restituisci risultati vuoti in caso di errore
             empty_df = pd.DataFrame(columns=["label", "category", "description", "source", "x", "y"])
             fig, ax = plt.subplots(figsize=(8, 6))
-            ax.text(0.5, 0.5, f"Errore: {str(e)}", ha='center', va='center', fontsize=12)
+            ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', fontsize=12)
             ax.set_axis_off()
             
-            return empty_df, fig, f"Errore: {str(e)}"
+            return empty_df, fig, f"Error: {str(e)}"
     
     def process_new_message(self, message: str, is_user: bool = True,
                            name_weight: float = 1.0,
@@ -226,7 +226,7 @@ class ConceptTransformationVisualizer:
             
             # Verifica limite
             if self.chat_handler.check_concept_limit():
-                return None, None, "Limite concetti raggiunto, resetta la conversazione"
+                return None, None, "Concept limit reached, reset the conversation"
             
             # Ricostruisci grafo con tutti i concetti
             self.build_concept_graph(
@@ -244,7 +244,7 @@ class ConceptTransformationVisualizer:
             # Crea visualizzazione con evoluzione
             fig = self.visualize_concepts_interactive(df, show_evolution=True)
             
-            return df, fig, f"Messaggio elaborato: trovati {len(new_concepts)} nuovi concetti"
+            return df, fig, f"Message processed: found {len(new_concepts)} new concepts"
             
         except Exception as e:
             logger.error(f"Errore nell'elaborazione messaggio: {e}", exc_info=True)
@@ -252,10 +252,10 @@ class ConceptTransformationVisualizer:
             # Restituisci risultati vuoti
             empty_df = pd.DataFrame(columns=["label", "category", "description", "source", "x", "y"])
             fig, ax = plt.subplots(figsize=(8, 6))
-            ax.text(0.5, 0.5, f"Errore: {str(e)}", ha='center', va='center', fontsize=12)
+            ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', fontsize=12)
             ax.set_axis_off()
             
-            return empty_df, fig, f"Errore: {str(e)}"
+            return empty_df, fig, f"Error: {str(e)}"
     
     def generate_chat_response(self, history):
         """Genera risposta chat (wrapper per compatibilità)"""

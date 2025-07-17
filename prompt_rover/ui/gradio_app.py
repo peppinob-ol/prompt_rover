@@ -40,110 +40,110 @@ def create_gradio_interface(visualizer=None):
             with gr.Column(scale=1):
                 with gr.Tabs() as tabs:
                     # Tab per modalità Input/Output
-                    with gr.TabItem("Modalità Input/Output"):
+                    with gr.TabItem("Input/Output Mode"):
                         input_text = gr.Textbox(
-                            label="Testo Input", 
-                            placeholder="Inserisci il testo di input",
+                            label="Input Text", 
+                            placeholder="Enter the input text",
                             lines=5,
                             elem_id="input_text"
                         )
                         output_text = gr.Textbox(
-                            label="Testo Output",
-                            placeholder="Inserisci il testo di output",
+                            label="Output Text",
+                            placeholder="Enter the output text",
                             lines=10,
                             elem_id="output_text"
                         )
                         
-                        with gr.Accordion("Opzioni avanzate", open=False):
+                        with gr.Accordion("Advanced Options", open=False):
                             name_weight_io = gr.Slider(
                                 minimum=0.0, maximum=1.0, value=0.7, step=0.1,
-                                label="Peso del nome vs. descrizione"
+                                label="Name vs. description weight"
                             )
                             dim_reduction_io = gr.Radio(
                                 ["umap", "tsne", "pca"],
-                                label="Metodo di riduzione dimensionale",
+                                label="Dimensionality reduction method",
                                 value="tsne"
                             )
                             use_mst_io = gr.Checkbox(
-                                label="Usa Minimum Spanning Tree",
+                                label="Use Minimum Spanning Tree",
                                 value=True
                             )
                             show_io_links_io = gr.Checkbox(
-                                label="Mostra connessioni input-output",
+                                label="Show input-output connections",
                                 value=True
                             )
                             use_llm_io = gr.Checkbox(
-                                label="Usa LLM per estrazione concetti",
+                                label="Use LLM for concept extraction",
                                 value=True
                             )
                             openai_api_key_io = gr.Textbox(
-                                label="Chiave API OpenAI (opzionale)",
+                                label="OpenAI API Key (optional)",
                                 value=default_api_key,
-                                placeholder="Inserisci se vuoi usare LLM",
+                                placeholder="Enter if you want to use LLM",
                                 type="password"
                             )
                         
-                        submit_btn = gr.Button("Elabora e visualizza", variant="primary")
-                        example_btn = gr.Button("Carica esempio fiori e saggezza")
+                        submit_btn = gr.Button("Process and Visualize", variant="primary")
+                        example_btn = gr.Button("Load flowers and wisdom example")
                     
                     # Tab per modalità Chat
-                    with gr.TabItem("Modalità Chat"):
+                    with gr.TabItem("Chat Mode"):
                         # Compatibilità con diverse versioni di Gradio
                         import inspect as _ins
                         _chatbot_kwargs = {
                             "height": 400,
-                            "label": "Conversazione",
+                            "label": "Conversation",
                         }
                         if "type" in _ins.signature(gr.Chatbot).parameters:
                             _chatbot_kwargs["type"] = "messages"
                         chatbot = gr.Chatbot(**_chatbot_kwargs)
                         chat_msg = gr.Textbox(
-                            placeholder="Scrivi un messaggio qui...",
-                            label="Messaggio"
+                            placeholder="Write a message here...",
+                            label="Message"
                         )
                         
-                        with gr.Accordion("Opzioni avanzate", open=False):
+                        with gr.Accordion("Advanced Options", open=False):
                             name_weight_chat = gr.Slider(
                                 minimum=0.0, maximum=1.0, value=0.7, step=0.1,
-                                label="Peso del nome vs. descrizione"
+                                label="Name vs. description weight"
                             )
                             dim_reduction_chat = gr.Radio(
                                 ["umap", "tsne", "pca"],
-                                label="Metodo di riduzione dimensionale",
+                                label="Dimensionality reduction method",
                                 value="tsne"
                             )
                             use_mst_chat = gr.Checkbox(
-                                label="Usa Minimum Spanning Tree",
+                                label="Use Minimum Spanning Tree",
                                 value=True
                             )
                             show_io_links_chat = gr.Checkbox(
-                                label="Mostra connessioni input-output",
+                                label="Show input-output connections",
                                 value=False
                             )
                             use_llm_chat = gr.Checkbox(
-                                label="Usa LLM per estrazione concetti",
+                                label="Use LLM for concept extraction",
                                 value=True
                             )
                             openai_api_key_chat = gr.Textbox(
-                                label="Chiave API OpenAI (opzionale)",
+                                label="OpenAI API Key (optional)",
                                 value=default_api_key,
-                                placeholder="Inserisci se vuoi usare LLM",
+                                placeholder="Enter if you want to use LLM",
                                 type="password"
                             )
                         
                         with gr.Row():
-                            chat_submit = gr.Button("Invia", variant="primary")
-                            chat_clear = gr.Button("Cancella conversazione")
-                            reinit_btn = gr.Button("Reinizializza sistema")
+                            chat_submit = gr.Button("Send", variant="primary")
+                            chat_clear = gr.Button("Clear conversation")
+                            reinit_btn = gr.Button("Reinitialize system")
             
             # Colonna destra per visualizzazione e risultati
             with gr.Column(scale=2):
-                static_output = gr.Plot(label="Visualizzazione concetti")
-                df_output = gr.DataFrame(label="Concetti estratti")
+                static_output = gr.Plot(label="Concept Visualization")
+                df_output = gr.DataFrame(label="Extracted Concepts")
                 status = gr.Textbox(
-                    label="Stato",
+                    label="Status",
                     interactive=False,
-                    value="Sistema inizializzato e pronto all'uso"
+                    value="System initialized and ready to use"
                 )
         
         # Funzioni per gestire l'interfaccia
@@ -156,12 +156,12 @@ def create_gradio_interface(visualizer=None):
                                use_mst, show_io_links, use_llm, openai_api_key):
             """Processa un messaggio chat"""
             if not message.strip():
-                return "", history, None, None, "Messaggio vuoto"
+                return "", history, None, None, "Empty message"
             
             # Configura chiave API se fornita e richiesta
             if use_llm and openai_api_key.strip():
                 if not visualizer.initialize_openai_client(openai_api_key):
-                    return "", history, None, None, "Errore nell'inizializzazione API OpenAI"
+                    return "", history, None, None, "Error initializing OpenAI API"
             
             try:
                 if history is None:
@@ -197,7 +197,7 @@ def create_gradio_interface(visualizer=None):
                 return "", history, df, fig_static, status_msg
                 
             except Exception as e:
-                error_msg = f"Errore durante l'elaborazione: {str(e)}"
+                error_msg = f"Error during processing: {str(e)}"
                 logger.error(error_msg)
                 traceback.print_exc()
                 
@@ -205,7 +205,7 @@ def create_gradio_interface(visualizer=None):
                     history = []
                 history.append({
                     "role": "assistant",
-                    "content": "Mi dispiace, si è verificato un errore durante l'elaborazione"
+                    "content": "Sorry, an error occurred during processing"
                 })
                 
                 return "", history, None, None, error_msg
@@ -213,16 +213,16 @@ def create_gradio_interface(visualizer=None):
         def clear_chat():
             """Cancella la conversazione"""
             visualizer.initialize_chat_mode()
-            return "", [], None, None, "Conversazione cancellata"
+            return "", [], None, None, "Conversation cleared"
         
         def load_example():
             """Carica esempio predefinito"""
-            input_text_example = "fiori saggezza"
-            output_text_example = """Se pensiamo al simbolismo dei fiori in relazione alla saggezza, il fiore di loto è uno dei più rappresentativi. Nell'immaginario di molte culture, soprattutto orientali, il loto cresce nel fango ma emerge puro e immacolato sulla superficie dell'acqua, simboleggiando la capacità di elevazione spirituale e intellettuale, proprio come chi acquisisce saggezza attraverso le difficoltà della vita.
+            input_text_example = "flowers wisdom"
+            output_text_example = """When we think about the symbolism of flowers in relation to wisdom, the lotus flower is one of the most representative. In the imagination of many cultures, especially Eastern ones, the lotus grows in mud but emerges pure and immaculate on the water's surface, symbolizing the capacity for spiritual and intellectual elevation, just like those who acquire wisdom through life's difficulties.
 
-Il salvia ha anche un nome che richiama la saggezza, derivando dal latino salvus (sano, salvo). Questa pianta, oltre alle sue proprietà curative, è spesso associata alla prudenza e all'esperienza.
+Sage also has a name that evokes wisdom, deriving from the Latin salvus (healthy, safe). This plant, in addition to its healing properties, is often associated with prudence and experience.
 
-Se pensiamo invece alla tradizione occidentale, la quercia, pur essendo un albero e non un fiore, è simbolo di saggezza per la sua longevità e la sua capacità di resistere alle tempeste, proprio come una mente saggia che sa affrontare le avversità senza spezzarsi."""
+If we instead think of the Western tradition, the oak, although being a tree and not a flower, is a symbol of wisdom for its longevity and its ability to resist storms, just like a wise mind that knows how to face adversity without breaking."""
             
             return input_text_example, output_text_example
         
@@ -303,7 +303,7 @@ Se pensiamo invece alla tradizione occidentale, la quercia, pur essendo un alber
             new_input = input_text.value
             new_output = output_text.value
             should_process = False
-            status_msg = "Sistema pronto"
+            status_msg = "System ready"
             
             try:
                 # Per HuggingFace Spaces, usa JavaScript per ottenere l'URL
@@ -335,9 +335,9 @@ Se pensiamo invece alla tradizione occidentale, la quercia, pur essendo un alber
                     # Controlla se eseguire automaticamente
                     if params.get('autorun', '').lower() == 'true':
                         should_process = True
-                        status_msg = "Elaborazione automatica da URL..."
+                        status_msg = "Automatic processing from URL..."
                     elif params.get('input') or params.get('output'):
-                        status_msg = "Campi popolati da URL. Clicca 'Elabora' per visualizzare."
+                        status_msg = "Fields populated from URL. Click 'Process' to visualize."
                 
             except Exception as e:
                 logger.warning(f"Impossibile leggere parametri URL: {e}")
@@ -392,7 +392,7 @@ Se pensiamo invece alla tradizione occidentale, la quercia, pur essendo un alber
                 if (autorun === 'true') {
                     setTimeout(() => {
                         const submitBtn = document.querySelector('button[variant="primary"]');
-                        if (submitBtn && submitBtn.textContent.includes('Elabora')) {
+                        if (submitBtn && submitBtn.textContent.includes('Process')) {
                             submitBtn.click();
                         }
                     }, 1000);

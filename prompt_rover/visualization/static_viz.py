@@ -87,7 +87,7 @@ class StaticVisualizer:
     def _create_empty_figure(self, figsize: Tuple[int, int]) -> plt.Figure:
         """Crea una figura vuota con messaggio"""
         fig, ax = plt.subplots(figsize=figsize)
-        ax.text(0.5, 0.5, "Nessun concetto da visualizzare",
+        ax.text(0.5, 0.5, "No concepts to visualize",
                 ha='center', va='center', fontsize=14)
         ax.set_axis_off()
         return fig
@@ -236,6 +236,6 @@ class StaticVisualizer:
     def _get_default_title(self, show_evolution: bool, is_chat_mode: bool) -> str:
         """Ottiene il titolo di default"""
         if show_evolution or is_chat_mode:
-            return "Evoluzione Concettuale della Conversazione"
+            return "Conceptual Evolution of the Conversation"
         else:
-            return "Mappa Concettuale della Trasformazione" 
+            return "Conceptual Map of the Transformation" 

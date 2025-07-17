@@ -108,24 +108,24 @@ class ConceptExtractor:
         logger.info(f"Estrazione concetti via LLM per {content_type}")
         
         prompt = f"""
-        Analizza il seguente testo ed estrai i concetti chiave.
+        Analyze the following text and extract the key concepts.
 
-        TESTO:
+        TEXT:
         {text}
 
-        ISTRUZIONI:
-        1. Identifica i 5-10 concetti più significativi nel testo
-        2. Per ogni concetto, fornisci:
-        - Un'etichetta breve e precisa (massimo 5 parole)
-        - Una categoria (entità, processo, relazione, attributo, ecc.)
-        - Una breve descrizione del concetto nel contesto
+        INSTRUCTIONS:
+        1. Identify the 5-10 most significant concepts in the text
+        2. For each concept, provide:
+        - A brief and precise label (maximum 5 words)
+        - A category (entity, process, relationship, attribute, etc.)
+        - A brief description of the concept in context
 
-        Restituisci SOLO un array JSON nel seguente formato, senza spiegazioni aggiuntive:
+        Return ONLY a JSON array in the following format, without additional explanations:
         [
             {{
-                "label": "etichetta concetto",
-                "category": "categoria",
-                "description": "breve descrizione"
+                "label": "concept label",
+                "category": "category",
+                "description": "brief description"
             }},
             ...
         ]
@@ -135,7 +135,7 @@ class ConceptExtractor:
             response = self.llm_client.chat.completions.create(
                 model=model,
                 messages=[
-                    {"role": "system", "content": "Sei un assistente specializzato nell'estrazione di concetti dai testi."},
+                    {"role": "system", "content": "You are an assistant specialized in extracting concepts from texts."},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.2,
