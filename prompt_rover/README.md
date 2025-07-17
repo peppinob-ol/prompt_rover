@@ -4,7 +4,7 @@ emoji: 🚀
 colorFrom: green
 colorTo: indigo
 sdk: gradio
-sdk_version: "4.44.1"
+sdk_version: "4.44.4"
 app_file: prompt_rover/app.py
 pinned: false
 license: mit
