@@ -1,0 +1,35 @@
+2025-07-17 07:36:06,105 - httpx - INFO - HTTP Request: GET https://api.gradio.app/gradio-messaging/en "HTTP/1.1 200 OK"
+2025-07-17 07:36:08,289 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-07-17 07:36:08,289 - concept_extractor - ERROR - Errore nell'inizializzazione del client OpenAI: name 'os' is not defined
+2025-07-17 07:36:08,289 - embeddings - INFO - Caricamento modello di embedding: text-embedding-3-small
+2025-07-17 07:36:08,289 - embeddings - ERROR - Errore nel caricamento del modello: name 'SentenceTransformer' is not defined
+2025-07-17 07:39:12,171 - httpx - INFO - HTTP Request: GET https://api.gradio.app/gradio-messaging/en "HTTP/1.1 200 OK"
+2025-07-17 07:39:18,259 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-07-17 07:39:18,302 - concept_extractor - INFO - Client OpenAI inizializzato con successo
+2025-07-17 07:39:18,304 - embeddings - INFO - Caricamento modello di embedding: text-embedding-3-small
+2025-07-17 07:39:18,342 - embeddings - INFO - Client OpenAI configurato per modello text-embedding-3-small
+2025-07-17 07:39:18,342 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)
+2025-07-17 07:39:33,795 - httpx - INFO - HTTP Request: GET https://api.gradio.app/gradio-messaging/en "HTTP/1.1 200 OK"
+2025-07-17 07:39:41,527 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-07-17 07:39:41,580 - concept_extractor - INFO - Client OpenAI inizializzato con successo
+2025-07-17 07:39:41,580 - embeddings - INFO - Caricamento modello di embedding: text-embedding-3-small
+2025-07-17 07:39:41,643 - embeddings - INFO - Client OpenAI configurato per modello text-embedding-3-small
+2025-07-17 07:39:41,643 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)
+2025-07-17 07:40:56,206 - httpx - INFO - HTTP Request: GET https://api.gradio.app/gradio-messaging/en "HTTP/1.1 200 OK"
+2025-07-17 07:40:58,755 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-07-17 07:40:58,781 - concept_extractor - INFO - Client OpenAI inizializzato con successo
+2025-07-17 07:40:58,787 - embeddings - INFO - Caricamento modello di embedding: text-embedding-3-small
+2025-07-17 07:40:58,809 - embeddings - INFO - Client OpenAI configurato per modello text-embedding-3-small
+2025-07-17 07:40:58,809 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)
+2025-07-17 07:40:58,809 - chat - INFO - Inizializzazione modalità chat
+2025-07-17 07:40:58,809 - chat - INFO - Modalità chat inizializzata
+2025-07-17 07:40:58,809 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)
+2025-07-17 07:41:04,604 - httpx - INFO - HTTP Request: GET https://api.gradio.app/gradio-messaging/en "HTTP/1.1 200 OK"
+2025-07-17 07:41:06,704 - performance - INFO - Inizializzazione ConceptTransformationVisualizer...
+2025-07-17 07:41:06,715 - concept_extractor - INFO - Client OpenAI inizializzato con successo
+2025-07-17 07:41:06,715 - embeddings - INFO - Caricamento modello di embedding: text-embedding-3-small
+2025-07-17 07:41:06,734 - embeddings - INFO - Client OpenAI configurato per modello text-embedding-3-small
+2025-07-17 07:41:06,734 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)
+2025-07-17 07:41:06,734 - chat - INFO - Inizializzazione modalità chat
+2025-07-17 07:41:06,734 - chat - INFO - Modalità chat inizializzata
+2025-07-17 07:41:06,734 - cache - INFO - Cache inizializzata (max_size=1000, enabled=True)

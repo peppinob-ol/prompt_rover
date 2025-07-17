@@ -5,7 +5,7 @@ colorFrom: green
 colorTo: indigo
 sdk: gradio
 sdk_version: "4.21.0"
-app_file: app.py
+app_file: prompt_rover/app.py
 pinned: false
 license: mit
 short_description: "Explore semantic relationships between text concepts"

@@ -77,9 +77,9 @@ jobs:
         echo "🧹 Pulizia contenuto esistente..."
         find . -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
         
-        # Copia il contenuto di prompt_rover/
-        echo "📂 Copio contenuto da prompt_rover/..."
-        cp -r ../prompt_rover/* .
+        # Copia la cartella prompt_rover/ intera
+        echo "📂 Copio cartella prompt_rover/..."
+        cp -r ../prompt_rover .
         
         # Verifica che ci siano modifiche da committare
         if [[ -n $(git status --porcelain) ]]; then
