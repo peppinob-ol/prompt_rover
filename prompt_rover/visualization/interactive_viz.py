@@ -210,12 +210,11 @@ class InteractiveVisualizer:
             y=group_df[y_col],
             mode='markers',
             marker=dict(
-                color=marker_color,
+                # Applichiamo l'alpha per-punto convertendo il colore HEX in RGBA
+                color=[self._hex_to_rgba(marker_color, a) for a in group_df[ALPHA].tolist()],
                 size=16 if is_chat_mode else 12,
                 line=dict(width=1, color='#888888' if is_chat_mode else 'black')
             ),
-            # Opacità a livello di trace; supporta lista per opacità per-punto
-            opacity=group_df[ALPHA].tolist(),
             name=group_name,
             hovertext=hover_text,
             hoverinfo='text',
@@ -243,6 +242,15 @@ class InteractiveVisualizer:
         if not text or len(text) <= max_length:
             return text
         return text[:max_length] + "..."
+
+    @staticmethod
+    def _hex_to_rgba(hex_color: str, alpha: float) -> str:
+        """Converte colore HEX in stringa RGBA con alpha specifico"""
+        hex_color = hex_color.lstrip('#')
+        if len(hex_color) != 6:
+            return hex_color  # fallback: restituisce valore originale
+        r, g, b = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+        return f'rgba({r}, {g}, {b}, {alpha})'
     
     def _configure_layout(self, fig: go.Figure, title: Optional[str],
                          show_evolution: bool, is_chat_mode: bool):
