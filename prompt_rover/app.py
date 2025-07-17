@@ -22,10 +22,14 @@ if __name__ == "__main__":
     # Crea e lancia l'interfaccia
     demo = create_gradio_interface()
     
-    # Configurazione per HF Spaces
+    # In ambiente HF Spaces, localhost non è accessibile direttamente;
+    # bisogna creare un link condivisibile (share=True). In locale lasciamo False.
+
+    is_hf_space = bool(os.getenv("SPACE_ID"))
+
     demo.launch(
-        share=False,  # Non condividere pubblicamente su Gradio
-        debug=True,   # Debug attivo per vedere errori
-        server_name="0.0.0.0",  # Ascolta su tutte le interfacce
-        server_port=7860  # Porta standard HF Spaces
+        share=is_hf_space,
+        debug=bool(os.getenv("DEBUG", "True") == "True"),
+        server_name="0.0.0.0",
+        server_port=7860,
     ) 
