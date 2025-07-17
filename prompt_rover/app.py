@@ -27,9 +27,18 @@ if __name__ == "__main__":
 
     is_hf_space = bool(os.getenv("SPACE_ID"))
 
-    # Work-around per bug Gradio 4.44.1 (_json_schema_to_python_type)
-    import gradio as _gr
-    _gr.Blocks.get_api_info = lambda self: None  # disattiva generazione schema
+    # Work-around per bug Gradio 4.44.1:
+    # Patching gradio_client.utils.get_type per gestire schema booleani
+    import gradio_client.utils as _gutils
+    if not hasattr(_gutils, "_orig_get_type"):
+        _gutils._orig_get_type = _gutils.get_type
+
+        def _safe_get_type(schema):
+            if isinstance(schema, bool):
+                return "boolean"
+            return _gutils._orig_get_type(schema)
+
+        _gutils.get_type = _safe_get_type
 
     demo.launch(
         share=is_hf_space,
