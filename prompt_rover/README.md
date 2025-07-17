@@ -11,9 +11,10 @@ license: mit
 short_description: "Explore semantic relationships between text concepts"
 ---
 
+
 # Prompt Rover - HuggingFace Spaces Deployment
 
-> ⚠️ **Nota**: Questo README è specifico per il deployment su HuggingFace Spaces. 
+> ⚠️ **Nota**: Questo  README è specifico per il deployment su HuggingFace Spaces . 
 > Per la **documentazione completa** del progetto, diagrammi di flusso, esempi dettagliati e istruzioni di sviluppo, consulta il [README principale](../README.md) nella root del repository.
 
 ## Quick Start
@@ -53,4 +54,6 @@ Il progetto utilizza un'architettura modulare:
 ---
 *Powered by Gradio, SentenceTransformers, e NetworkX*
 
-<!-- Deployment trigger: force new workflow run --> 
+ <!-- Deployment trigger: force new workflow run --> 
+ <!-- Deployment trigger: force new workflow run --> 
+ <!-- Deployment trigger: force new workflow run --> 
