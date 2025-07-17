@@ -199,30 +199,44 @@ class InteractiveVisualizer:
             
             hover_text.append(text)
         
-        # Crea trace
-        trace = go.Scatter(
+        # Crea trace separati per i nodi (marker) e per le etichette (testo).
+        # Questo evita problemi di rendering su alcune versioni di Plotly/Kaleido
+        # che possono ignorare i marker quando si usa "markers+text" in combinazione
+        # con opacità vettoriale.
+
+        # Trace per i marker
+        marker_trace = go.Scatter(
             x=group_df[x_col],
             y=group_df[y_col],
-            mode='markers+text',
+            mode='markers',
             marker=dict(
                 color=marker_color,
                 size=16 if is_chat_mode else 12,
-                opacity=group_df[ALPHA].tolist(),
                 line=dict(width=1, color='#888888' if is_chat_mode else 'black')
             ),
-            text=group_df[label_col],
-            textposition="top center",
+            # Opacità a livello di trace; supporta lista per opacità per-punto
+            opacity=group_df[ALPHA].tolist(),
             name=group_name,
             hovertext=hover_text,
             hoverinfo='text',
-            hoverlabel=dict(
-                bgcolor='rgba(50, 50, 50, 0.9)',
-                bordercolor='#444444',
-                font=dict(size=12, color='white')
-            )
+            showlegend=True
         )
-        
-        fig.add_trace(trace)
+
+        # Trace per le etichette testo (senza marker)
+        text_trace = go.Scatter(
+            x=group_df[x_col],
+            y=group_df[y_col],
+            mode='text',
+            text=group_df[label_col],
+            textposition="top center",
+            textfont=dict(color='white'),
+            hoverinfo='none',
+            showlegend=False
+        )
+
+        # Aggiunge i trace alla figura
+        fig.add_trace(marker_trace)
+        fig.add_trace(text_trace)
     
     def _truncate_text(self, text: str, max_length: int = 100) -> str:
         """Tronca testi lunghi per i tooltip"""
